@@ -6,9 +6,27 @@ export interface Task {
 
 export let tasks: Task[] = [];
 
+// Función para verificar si un ID ya existe
+const idExists = (id: number): boolean => {
+    return tasks.some(task => task.id === id);
+}
+
+// Generador de ID único
+const generateUniqueId = (): number => {
+    let id: number = 1;
+    while(idExists(id)){
+        id++
+    }
+    return id;
+}
+
 export const addTask = (description: string): void => {
+    if (tasks.length >= 99) {
+        console.log('Número máximo de tareas alcanzado');
+        return;
+    }
     const newTask: Task = {
-        id: tasks.length + 1,
+        id: generateUniqueId(),
         description,
         completed: false
     };
@@ -27,9 +45,12 @@ export const addTask = (description: string): void => {
 //     return output;
 // };
 export const listTasks = (): Task[] => {
-    console.log('Tasks:');
+    console.log('Tasks:\n=====\n\n');
     tasks.forEach(task => {
-        console.log(`${task.id}. ${task.completed ? "[x]":"[ ]"} ${task.description}`);
+        console.log(
+` - ${task.completed ? "[x]":"[ ]"} ${task.description}
+    task id: ${task.id}
+`);
     });
     return tasks; // Devuelve el array de tareas
 };

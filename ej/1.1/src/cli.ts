@@ -27,6 +27,9 @@ const startCLI = () => {
                 const description = args.slice(1).join(' ');
                 addTask(description);
                 console.log(`Task '${description}' added.`);
+                // rl.question("Enter your description: ",(inputDesc)=>{
+                //     console.log(`Has introducido: ${inputDesc}`)
+                // })
                 break;
             case 'list':
                 listTasks();
@@ -50,7 +53,7 @@ const startCLI = () => {
                 break;
         }
 
-        startCLI(); // Recursive call to continue CLI loop
+        startCLI(); // Recursive call para CLI loop
     });
 };
 
