@@ -22,7 +22,6 @@ const server = http.createServer((req, res) => {
     // - Caso en el que el servidor va a buscar los archivos estáticos, restantes.
     else if (req.url?.startsWith('/public/') || req.url?.startsWith('/dist/')) {
         const filePath = path.join(__dirname, '..', req.url);
-        // const contentType = req.url.endsWith('.css') ? 'text/css' : 'text/javascript';
         serveStaticFile(filePath);
     } 
     else if (req.url === '/tasks' && req.method === 'GET') {
