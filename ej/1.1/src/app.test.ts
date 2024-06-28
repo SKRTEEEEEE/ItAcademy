@@ -1,45 +1,3 @@
-// import { addTask, tasks, listTasks, deleteTask, completeTask } from './app';
-
-// describe('addTask function', () => {
-//   it('should add a new task to the tasks array', () => {
-//     addTask('Do the laundry');
-
-//     expect(tasks.length).toBe(1); // Verifica que se haya añadido una tarea
-//     expect(tasks[0].description).toBe('Do the laundry'); // Verifica la descripción de la tarea añadida
-//     expect(tasks[0].completed).toBe(false); // Verifica que la tarea añadida no esté marcada como completada
-//   });
-// });
-
-// describe('listTasks function', () => {
-//     it('should format tasks correctly', () => {
-//       tasks.push({ id: 2, description: 'Walk the dog', completed: true });
-  
-//       const output = listTasks();
-  
-//       expect(output).toContain('Tasks:');
-//       expect(output).toContain('1. [ ] Do the laundry');
-//       expect(output).toContain('2. [X] Walk the dog');
-//     });
-//   });
-
-// describe("completeTask function", ()=>{
-//     it("should mark a task as completed", ()=>{
-//         tasks.push({id: 3, description: "Listen some music", completed: false});
-//         completeTask(3);
-        
-//         expect(tasks[2].completed).toBe(true);
-//     })
-// })
-
-// describe("deleteTask function", ()=>{
-//     it("should delete a task", ()=>{
-//         tasks.push({id: 4, description: "Buy groceries", completed: false});
-
-//         deleteTask(3);
-
-//         expect(tasks.length).toBe(3);
-//     })
-// })
 import { addTask, listTasks, completeTask, deleteTask, tasks } from './app';
 
 describe('Todo List Application', () => {
@@ -56,10 +14,18 @@ describe('Todo List Application', () => {
 
     it('should list tasks', () => {
         addTask('Do the laundry');
-        console.log = jest.fn(); // Mock de console.log
+
+        // Espiar console.log para capturar la salida
+        const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});
         listTasks();
-        expect(console.log).toHaveBeenCalledWith('Tasks:');
-        expect(console.log).toHaveBeenCalledWith('1. [ ] Do the laundry');
+
+        // Verificar la salida esperada en la consola
+        expect(consoleSpy.mock.calls[0][0]).toContain('Tasks:');
+        expect(consoleSpy.mock.calls[1][0]).toContain(' - [ ] Do the laundry');
+        expect(consoleSpy.mock.calls[1][0]).toContain('task id: 1');
+
+        // Restaurar console.log original después de la prueba
+        consoleSpy.mockRestore();
     });
 
     it('should complete a task', () => {
