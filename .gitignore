@@ -1,3 +1,6 @@
 node_modules
 dist
-public/*/output.css
+
+# callback/jest-ts-tw/public/output.css
+**/public/output.css
+
