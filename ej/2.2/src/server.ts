@@ -1,19 +1,12 @@
-// server.ts
-
+// src/server.ts
 import http from 'http';
 import fs from 'fs';
 import path from 'path';
-import { debouncedIncrement, throttledIncrement } from './handle';
-import { TokenBucket } from './utils/token-bucket';
+import { debouncedFullIncrement, debouncedMixedIncrement, throttledFullIncrement, throttledMixedIncrement } from './handle';
 
 const hostname = 'localhost';
 const port = 4001;
 
-const debounceBucket = new TokenBucket(5, 1);
-const throttleBucket = new TokenBucket(5, 1);
-
-let debouncePromise: Promise<void> | null = null;
-let debounceResolve: (() => void) | null = null;
 
 const serveStaticFile = (filePath: string, res: http.ServerResponse) => {
   const ext = path.extname(filePath);
@@ -35,38 +28,22 @@ const serveStaticFile = (filePath: string, res: http.ServerResponse) => {
   });
 };
 
-const executeDebounceIncrement = async (req: http.IncomingMessage, res: http.ServerResponse) => {
-  await debouncedIncrement(req, res);
-};
-
 const server = http.createServer((req, res) => {
   const publicPath = path.resolve(__dirname, '..', 'public');
-
   if (req.url === '/' || req.url === '/index.html') {
     const filePath = path.join(publicPath, 'index.html');
     serveStaticFile(filePath, res);
   } else if (req.url?.startsWith('/public/') || req.url?.startsWith('/dist/')) {
     const filePath = path.join(__dirname, '..', req.url);
     serveStaticFile(filePath, res);
-  } else if (req.url === '/debounce' && req.method === 'GET') {
-    if (debouncePromise) {
-      // Cancelar la promesa pendiente si existe
-      debounceResolve && debounceResolve();
-    }
-    debouncePromise = new Promise<void>((resolve) => {
-      debounceResolve = resolve;
-      setTimeout(() => {
-        executeDebounceIncrement(req, res);
-        debouncePromise = null; // Limpiamos la promesa después de ejecutar la función
-      }, 2000);
-    });
-  } else if (req.url === '/throttle' && req.method === 'GET') {
-    if (throttleBucket.remove() === 200) {
-      throttledIncrement(req, res);
-    } else {
-      res.writeHead(429, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ message: 'Too Many Requests' }));
-    }
+  } else if (req.url === '/debounce-full' && req.method === 'GET') {
+    debouncedFullIncrement(req, res);
+  } else if (req.url === '/throttle-full' && req.method === 'GET') {
+    throttledFullIncrement(req, res);
+  }else if (req.url === '/debounce-wrong' && req.method === 'GET') {
+    debouncedMixedIncrement(req, res);
+  } else if (req.url === '/throttle-wrong' && req.method === 'GET') {
+    throttledMixedIncrement(req, res);
   } else {
     res.statusCode = 404;
     res.end(JSON.stringify({ message: 'Not Found' }));

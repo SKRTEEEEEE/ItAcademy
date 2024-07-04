@@ -2,34 +2,64 @@ const baseURL = 'http://localhost:4001';
 const incrementCountServer = (element, count) =>{
   element.textContent = count;
 }
+const useDebounce = (fn, path, time) =>{
+  return debounce(()=>{
+    fetch(path)
+      .then(response => response.json())
+      .then(data => {
+        fn(data.count);
+      })
+      .catch(error => console.error('Error fetching count:', error));
+  },time)
+}
 //Last try
 // Ejemplo básico de manejo de clics en un botón para debounce y throttle en el cliente
-let defaultFullCount = 0;
+
 const defaultFullText = document.getElementById('default-full');
-// const debounceFullText = document.getElementById('debounce-full');
-// const throttleFullText = document.getElementById('throttle-full');
+let defaultFullCount = 0;
+
+
 const updateDefaultFullText = ()=>{
+  // defaultWrongCount++;
   defaultFullCount++;
+  // incrementCountServer(defaultWrongText, defaultWrongCount);
   incrementCountServer(defaultFullText, defaultFullCount);
 } 
+//Cheat
 
-const debounceClick = debounce(() => {
-  fetch('/debounce')  // Ejemplo de solicitud fetch
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('Debounce count incremented:', data.count)
-      updateDebounceFullText(data.count);
-    })
-    .catch(error => console.error('Error fetching debounce count:', error));
-}, 2000);
+function updateDebounceFullText(count) {
+  const debounceFullText = document.getElementById('debounce-full');
+  debounceFullText.textContent = count;
+  // debounceWrongText.textContent = count;
+}
 
-const throttleClick = throttle(() => {
-  fetch('/throttle')  // Ejemplo de solicitud fetch
+function updateThrottleFullText(count) {
+  const throttleFullText = document.getElementById('throttle-full');
+  throttleFullText.textContent = count;
+  // throttleWrongText.textContent = count;
+}
+
+
+
+
+
+// const debounceClickFull = debounce(() => {
+//   fetch('/debounce-full')  
+//     .then(response => {
+//       if (!response.ok) {
+//         throw new Error('Network response was not ok');
+//       }
+//       return response.json();
+//     })
+//     .then(data => {
+//       console.log('Debounce count incremented:', data.count)
+//       updateDebounceFullText(data.count);
+//     })
+//     .catch(error => console.error('Error fetching debounce count:', error));
+// }, 2000);
+const debounceClickFull = useDebounce(updateDebounceFullText,'/debounce-full', 2000);
+const throttleClickFull = throttle(() => {
+  fetch('/throttle-full')  
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -42,19 +72,11 @@ const throttleClick = throttle(() => {
     })
     .catch(error => console.error('Error fetching throttle count:', error));
 }, 2000);
-function updateDebounceFullText(count) {
-  const debounceFullText = document.getElementById('debounce-full');
-  debounceFullText.textContent = count;
-}
 
-function updateThrottleFullText(count) {
-  const throttleFullText = document.getElementById('throttle-full');
-  throttleFullText.textContent = count;
-}
 document.getElementById('incrementFullButton').addEventListener('click', () => {
   updateDefaultFullText();
-  debounceClick()
-  throttleClick()
+  debounceClickFull()
+  throttleClickFull()
 
 });
 
@@ -74,15 +96,14 @@ document.getElementById('incrementFullButton').addEventListener('click', () => {
 //     console.error('Error fetching Pokémon data:', error);
 //   }
 // });
-const defaultWrongText = document.getElementById('default-wrong');
-const debounceWrongText = document.getElementById('debounce-wrong');
-const throttleWrongText = document.getElementById('throttle-wrong');
-let defaultWrongCount = 0;
-// let debounceCount = 0;
-// let throttleCount = 0;
+const defaultMixedText = document.getElementById('default-wrong');
+const debounceMixedText = document.getElementById('debounce-wrong');
+const throttleMixedText = document.getElementById('throttle-wrong');
+let defaultMixedCount = 0;
 
 
 
+// Esto te llevara al infierno 👽🔫
 // const fetchCount = (url, element) =>{
 //   fetch(url)
 //     .then(response => response.json())
@@ -92,40 +113,51 @@ let defaultWrongCount = 0;
 //     .catch(error => console.error('Error fetching count:', error));
 // }
 // Helper to fetch count
-const fetchCount = async (url) => {
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    return data.count;
-  } catch (error) {
-    console.error('Error fetching count:', error);
-  }
-};
+// const fetchCount = async (url) => {
+//   try {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     return data.count;
+//   } catch (error) {
+//     console.error('Error fetching count:', error);
+//   }
+// };
 
 
-const updateDefaultWrongText = ()=>{
-  defaultWrongCount++;
-  incrementCountServer(defaultWrongText, defaultWrongCount);
+const updateDefaultMixedText = ()=>{
+  defaultMixedCount++;
+  incrementCountServer(defaultMixedText, defaultMixedCount);
 } 
 
-const updateDebounceWrongText = async()=>{
-  const count = await fetchCount('/debounce');
-  console.log("count: ", count)
-  if (count !== undefined) debounceWrongText.textContent = count;
-}
+// const updateDebounceWrongText = (count) => {
+//   debounceWrongText.textContent = count;
+// } 
 
-const updateThrottleWrongText = async()=>{
-  const count = await fetchCount('/throttle');
-  if (count !== undefined) throttleWrongText.textContent = count;
 
-} 
+const debounceClickMixed = useDebounce((count)=>debounceMixedText.textContent = count, '/debounce-wrong',200);
+const throttleClickMixed = useDebounce((count)=>throttleMixedText.textContent = count, '/throttle-wrong',200);
+
+// const updateDebounceWrongText = async()=>{
+//   const count = await fetchCount('/debounce');
+//   console.log("count: ", count)
+//   if (count !== undefined) debounceWrongText.textContent = count;
+// }
+
+// const updateThrottleWrongText = async()=>{
+//   const count = await fetchCount('/throttle');
+//   if (count !== undefined) throttleWrongText.textContent = count;
+
+// } 
+
+
 
 // Button click event
-document.getElementById('incrementButton').addEventListener('click', () => {
-  updateDefaultWrongText();
-  updateDebounceWrongText();
-  updateThrottleWrongText();
-});
+document.getElementById('incrementWrongButton').addEventListener('click', () => {
+  updateDefaultMixedText();
+
+  debounceClickMixed()
+  throttleClickMixed()
+  });
 
 
 
