@@ -14,40 +14,40 @@ import {RequestHandler} from "../../types"
 //     };
 
 // }
-// export function debounce<DebounceFunction extends (...args: any[])=>void>(func:DebounceFunction, wait: number): (...args: Parameters<DebounceFunction>)=>void{
-//   let timeout: ReturnType<typeof setTimeout>;
-//   return function( ...args: Parameters<DebounceFunction>){
+export function debounce<DebounceFunction extends (...args: any[])=>void>(func:DebounceFunction, wait: number): (...args: Parameters<DebounceFunction>)=>void{
+  let timeout: ReturnType<typeof setTimeout>;
+  return function( ...args: Parameters<DebounceFunction>){
       
-//       clearTimeout(timeout);
-//       timeout = setTimeout(() =>{
-//           func(...args)
-      
-//       }, wait);
-//   };
-
-// }
-export function debounce<DebounceFunction extends (...args: any[]) => void>(
-  func: DebounceFunction,
-  wait: number
-): (...args: Parameters<DebounceFunction>) => void {
-  let timeout: ReturnType<typeof setTimeout> | null = null;
-  let lastArgs: Parameters<DebounceFunction> | null = null;
-
-  return function (...args: Parameters<DebounceFunction>) {
-    lastArgs = args;
-
-    if (timeout) {
       clearTimeout(timeout);
-    }
-
-    timeout = setTimeout(() => {
-      if (lastArgs) {
-        func(...lastArgs);
-        lastArgs = null;
-      }
-    }, wait);
+      timeout = setTimeout(() =>{
+          func(...args)
+      
+      }, wait);
   };
+
 }
+// export function debounce<DebounceFunction extends (...args: any[]) => void>(
+//   func: DebounceFunction,
+//   wait: number
+// ): (...args: Parameters<DebounceFunction>) => void {
+//   let timeout: ReturnType<typeof setTimeout> | null = null;
+//   let lastArgs: Parameters<DebounceFunction> | null = null;
+
+//   return function (...args: Parameters<DebounceFunction>) {
+//     lastArgs = args;
+
+//     if (timeout) {
+//       clearTimeout(timeout);
+//     }
+
+//     timeout = setTimeout(() => {
+//       if (lastArgs) {
+//         func(...lastArgs);
+//         lastArgs = null;
+//       }
+//     }, wait);
+//   };
+// }
 export function debounceHandler(handler: RequestHandler, wait: number): RequestHandler {
   const debouncedFunction = debounce(handler, wait);
   return (req: http.IncomingMessage, res: http.ServerResponse) => {

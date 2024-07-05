@@ -3,18 +3,18 @@ import http from "http";
 
 type FuncType = (...args: any[]) => void;
 
-export function throttle(func: FuncType, delay: number) {
-  let throttling = false;
-  return function(this: any, ...args: any[]) {
-    if (!throttling) {
-      func.apply(this, args);
-      throttling = true;
-      setTimeout(() => {
-        throttling = false;
-      }, delay);
-    }
-  };
-}
+// export function throttle(func: FuncType, delay: number) {
+//   let throttling = false;
+//   return function(this: any, ...args: any[]) {
+//     if (!throttling) {
+//       func.apply(this, args);
+//       throttling = true;
+//       setTimeout(() => {
+//         throttling = false;
+//       }, delay);
+//     }
+//   };
+// }
 export function throttleHandler(handler: RequestHandler, wait: number): RequestHandler {
   const throttledFunction = throttle(handler, wait);
   return (req: http.IncomingMessage, res: http.ServerResponse) => {
@@ -36,15 +36,15 @@ export function throttleHandler(handler: RequestHandler, wait: number): RequestH
 //   };
 // }
 
-// export function throttle(func: FuncType, delay: number) {
-//   let last = 0;
-//   return (...args: any[]) => {
-//     const now = Date.now();
-//     if (now - last < delay) return
-//     last = now;
-//     return func(...args);
-//   };
-// }
+export function throttle(func: FuncType, delay: number) {
+  let last = 0;
+  return (...args: any[]) => {
+    const now = Date.now();
+    if (now - last < delay) return
+    last = now;
+    return func(...args);
+  };
+}
 
 
 // NOT WORKS GOOD, WITH ERRORS!
