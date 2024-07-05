@@ -1,46 +1,42 @@
-// Throttle function CLI
-
+import { memoize } from "./memoize";
 import readline from "readline"
-import { throttle } from "./throttle";
 
-const rl = readline.createInterface({
+function fibonacci(n: number): number {
+    if (n <= 1) {
+      return n;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+  }
+  
+  const memoizedFibonacci = memoize(fibonacci);
+  
+  const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: '\nEnter a message: \n'
-})
-let inputCount = 0;
-let callCount = 0;
-
-console.log(`Throttle function CLI:
-    
-Send a message to cal the throttled 10 sec example function: 
-(Type 'exit' to quit)`);
-
-const exampleFn = (text:string)=>{
-    callCount++;
-    console.log(`\nExample function executed->\n- At ${new Date().toISOString()} with text: ${text}`);
-    console.log(`- Throttle called: ${callCount} times`);
-    console.log(`- Total inputs: ${inputCount}`);
-    rl.prompt();   
-}
-
-const throttledFn = throttle((input:string)=>{
-    exampleFn(input)
-}, 10000)
-
-const startCLI = ()=>{
-    rl.prompt()
-    rl.on('line', (input) => {
-        inputCount++;
-        if(input.trim().toLowerCase() === 'exit') {
-            rl.close();
-        } else {
-            throttledFn(input);
-        }
-    }).on("close", ()=>{
-        console.log("Exiting...");
-        process.exit(0);
-    })
-}
-
-startCLI();
+  });
+  
+  function calculateFibonacci(n: number) {
+    const start = process.hrtime();
+    const result = memoizedFibonacci(n);
+    const end = process.hrtime(start);
+    const timeTaken = end[0] * 1000 + end[1] / 1000000; // Convert to milliseconds
+    return { result, timeTaken };
+  }
+  
+  function processInput(input: string) {
+    const n = parseInt(input.trim(), 10);
+    if (isNaN(n)) {
+      console.log('Invalid number. Please enter a valid integer.');
+    } else {
+      const { result, timeTaken } = calculateFibonacci(n);
+      console.log(`Fibonacci(${n}) = ${result}, calculated in ${timeTaken.toFixed(2)} ms`);
+    }
+    rl.prompt();
+  }
+  
+  rl.setPrompt('Enter a number to calculate Fibonacci (Ctrl+C to exit): ');
+  rl.prompt();
+  
+  rl.on('line', (input: string) => {
+    processInput(input);
+  });
