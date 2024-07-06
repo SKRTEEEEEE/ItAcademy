@@ -40,15 +40,15 @@
         <article class="flex flex-1 justify-between rounded-md bg-white px-7 py-2">
           <div class="flex flex-col">
             <h2 class="mb-4 underline decoration-blue-300">Respuesta de la API</h2>
-            <div class="mb-4" id="timeCall">
+            <div class="mb-4">
               ⏳Ha tardado : <br />
-              99 ms
+              <span id="timeCall"></span>
             </div>
-            <div class="flex h-full items-center justify-start" id="ids">
+            <div class="flex flex-col h-full items-center justify-start" id="ids">
               Desde el <br />
-              nº 61 <br /><br />
+              nº <span id="idsFrom"></span> <br/><br/>
               Hasta el <br />
-              nº 70
+              nº <span id="idsTo"></span>
             </div>
           </div>
           <ul class="flex w-36 flex-col gap-0.5 text-center" id="pokemonList">

@@ -30,7 +30,8 @@ const fetchPokemons = async (pageNo) => {
 const debounceFetchPokemons = debounce(async (pageNo) => {
   try {
     const timeCallEl = document.getElementById("timeCall");
-    const idsEl = document.getElementById("ids");
+    const idsFrom = document.getElementById("idsFrom");
+    const idsTo = document.getElementById("idsTo")
     const pokemonListEl = document.getElementById("pokemonList");
 
     const response = await fetch('/pokemon', {
@@ -48,8 +49,9 @@ const debounceFetchPokemons = debounce(async (pageNo) => {
     const data = await response.json();
 
     // Actualizar elementos HTML con los datos recibidos
-    idsEl.textContent = `Desde el ${data.from} hasta el ${data.to}`;
-    timeCallEl.textContent = `Ha tardado ${data.timeTaken}`;
+    idsFrom.textContent = data.from
+    idsTo.textContent = data.to
+    timeCallEl.textContent = data.timeTaken;
 
     let listItems = '';
     data.data.forEach(pokemon => {
@@ -109,8 +111,9 @@ function debounce(func, wait) {
 const displayCallTimes = () => {
   const callTimesEl = document.getElementById("callTimes");
   let listItems = '';
-  callTimes.forEach((time, index) => {
-    listItems += `<li class="flex w-4/5 justify-between text-xs"><span class="rounded-lg border px-2 py-0.5 hover:bg-gray-100">Llamada ${index + 1}:</span> ${time}</li>`
+  const lastTenCallTimes = callTimes.slice(-10);
+  lastTenCallTimes.forEach((time, index) => {
+    listItems += `<li class="flex w-4/5 justify-between text-xs"><span class="rounded-lg border px-2 py-0.5 hover:bg-gray-100">Llamada ${callTimes.length - lastTenCallTimes.length + index + 1}:</span> ${time}</li>`
     // listItems += `<li>Llamada ${index + 1}: ${time}</li>`;
   });
   callTimesEl.innerHTML = listItems;
