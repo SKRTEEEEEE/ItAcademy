@@ -35,9 +35,58 @@ export function throttle(func: FuncType, delay: number) {
     return func(...args);
   };
 }
+//Test
+// export function throttle(func: Function, limit: number) {
+//   let inThrottle: boolean;
+  
+//   return function(this:any ,...args: any[]) {
+//     if (!inThrottle) {
+//       func.apply(this, args);
+//       inThrottle = true;
+//       setTimeout(() => inThrottle = false, limit);
+//     }
+//   };
+// }
+// export const throttle = (callback: Function, delay:number) => {
+//   let timeout:any
+//   return (...args:any[]) => {
+//     if (timeout !== undefined) {
+//       return
+//     }
+  
+//     timeout = setTimeout(() => {
+//       timeout = undefined
+//     }, delay)
+  
+//     return callback(...args)
+//   }
+//   }
+// export function throttle(func: Function, delay: number) {
+//   let throttling = false;
+//   return function(this: any, ...args: any[]) {
+//     if (!throttling) {
+//       func.apply(this, args);
+//       throttling = true;
+//       setTimeout(() => {
+//         throttling = false;
+//       }, delay);
+//     }
+//   };
+// }
+// export function throttle(func: Function, limit: number) {
+//   let inThrottle: boolean;
+  
+//   return function(this: any, ...args: any[]) {
+//     if (!inThrottle) {
+//       func.apply(this, args);
+//       inThrottle = true;
+//       setTimeout(() => inThrottle = false, limit);
+//     }
+//   };
+// }
 
 
-// NOT WORKS GOOD, WITH ERRORS!
+// NOT WORKS GOOD, WITH ERRORS (bad examples!)
 // export function throttle(cb:Function, delay = 1000) {
 //   let shouldWait = false
 //   let waitingArgs:any
