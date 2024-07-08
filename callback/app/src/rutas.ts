@@ -1,6 +1,6 @@
 import express from "express"
 import path from "path"
-import { debouncedAddTask, debouncedCompleteTask, debouncedDeleteTask, handleGetTasks } from "./handle";
+import {  handleAddTask, handleCompleteTask, handleDeleteTask, handleGetTasks } from "./handle";
 
 const rutas = express.Router();
 
@@ -15,14 +15,12 @@ rutas.get("/todo-debounce",(req,res)=>{
     res.sendFile('todo-debounce.html',  { root: publicDirectory });
 })
 rutas.put("/tasks/:id/complete", (req, res)=>{
-    debouncedCompleteTask(req, res)
+    handleCompleteTask(req, res)
 })
 rutas.delete("/tasks/:id", (req, res)=>{
-    debouncedDeleteTask(req, res)
+    handleDeleteTask(req, res)
 }) 
-rutas.post("/tasks/", (req, res)=>{
-    debouncedAddTask(req, res)
-})
+rutas.post("/tasks/", handleAddTask)
 
 rutas.get("/tasks/", (req, res)=>{
     handleGetTasks(req, res)
