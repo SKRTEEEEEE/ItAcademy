@@ -4,3 +4,6 @@ dist
 # callback/jest-ts-tw/public/output.css
 **/public/output.css
 
+
+# env var 
+.env
