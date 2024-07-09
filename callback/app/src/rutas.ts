@@ -4,6 +4,7 @@ import {  handleAddTask, handleCompleteTask, handleDeleteAllTasks, handleDeleteT
 import { debouncedAddTask, debouncedCompleteTask, debouncedDeleteTask, handleGetBadTasks } from "./handle/bad-todo";
 import { badDebouncedFullIncrement, badDebouncedMixedIncrement, badThrottledFullIncrement, badThrottledMixedIncrement } from "./handle/vs";
 import { goodDebouncedMixedIncrement, goodThrottledMixedIncrement, incrementDebounceFullCount,  incrementThrottleFullCount } from "./handle/wrong-vs";
+import { debouncedFetch } from "./handle/memoize";
 
 const rutas = express.Router();
 
@@ -58,3 +59,9 @@ rutas.get("/wrong-debounce-wrong", goodDebouncedMixedIncrement)
 rutas.get("/wrong-throttle-wrong", goodThrottledMixedIncrement)
 
 export default rutas;
+
+//Pokemon examples
+rutas.get("/memoize",(req, res)=>{
+    res.sendFile('memoize.html', { root: publicDirectory });
+})
+rutas.post("/pokemon",debouncedFetch)
