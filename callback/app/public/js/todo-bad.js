@@ -2,7 +2,7 @@ const baseURL = 'http://localhost:4001';
 
 async function fetchTasks() {
     try {
-        const response = await fetch(`${baseURL}/tasks`);
+        const response = await fetch(`${baseURL}/bad-tasks`);
         const tasks = await response.json();
         return tasks;
     } catch (error) {
@@ -22,7 +22,7 @@ async function addTask() {
     }
 
     try {
-        const response = await fetch(`${baseURL}/tasks`, {
+        const response = await fetch(`${baseURL}/bad-tasks`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ async function addTask() {
 
 async function completeTask(id) {
     try {
-        await fetch(`${baseURL}/tasks/${id}/complete`, { method: 'PUT' });
+        await fetch(`${baseURL}/bad-tasks/${id}/complete`, { method: 'PUT' });
         const tasks = await fetchTasks();
         displayTasks(tasks);
     } catch (error) {
@@ -54,7 +54,7 @@ async function completeTask(id) {
 
 async function deleteTask(id) {
     try {
-        await fetch(`${baseURL}/tasks/${id}`, { method: 'DELETE' });
+        await fetch(`${baseURL}/bad-tasks/${id}`, { method: 'DELETE' });
         const tasks = await fetchTasks();
         displayTasks(tasks);
     } catch (error) {
@@ -63,7 +63,6 @@ async function deleteTask(id) {
 
     document.getElementById('taskInput').focus();
 }
-
 async function deleteAllTasks(){
     try{
         await fetch(`${baseURL}/tasks`, {method: 'DELETE'});
@@ -73,6 +72,7 @@ async function deleteAllTasks(){
     }catch (error){
         console.error('Error deleting all tasks:', error);
     }
+    document.getElementById('taskInput').focus();
 }
 
 function displayTasks(tasks) {

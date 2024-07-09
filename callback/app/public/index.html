@@ -10,39 +10,18 @@
 </head>
 
 <body>
-    <div class="container">
+    <section class="container">
 
         <h1>Funciones callback</h1>
 
-        <div id="presentacio">
-            <a href="/todo-debounce"><h2>Ejemplo uso debounce() en el servidor</h2></a>
-            <p>Elige la fruta que deseas haciendo click sobre su imagen.</p>
+        <ol id="presentacio">
+            <li><a href="/todo-bad-debounce"><h2>Bad server debounce()</h2><p>Introducción al debounce y ejemplo de uso del debounce() en el servidor, debounce parte 1</p></a></li>
+            <li><a href="/todo-debounce"><h2>Good server debounce()</h2><p>Buenas practicas en el uso de debounce() en el servidor, debounce parte 2</p></a></li>
+            
 
-        </div>
+        </ol>
 
-        <div class="fruites">
-            <div>
-                <img onclick="aranja()" class="imatges" src="img/aranja.png" alt="Aranja">
-                <p>Pomelo : 2,50€/kg</p>
-            </div>
-            <div>
-                <img onclick="kiwi()" class="imatges" src="img/kiwi.png" alt="Kiwi">
-                <p>Kiwi : 4,20€/kg</p>
-            </div>
-            <div>
-                <img onclick="llimones()" class="imatges" src="img/llimones.png" alt="Llimones">
-                <p>Limón : 1,20€/kg</p>
-            </div>
-            <div>
-                <img onclick="pinya()" class="imatges" src="img/pinya.png" alt="Pinya">
-                <p>Piña : 2.8€/ud</p>
-            </div>
-            <div>
-                <img onclick="sindria()" class="imatges" src="img/sindria.png" alt="Sindria">
-                <p>Sandía: 1,20€/kg</p>
-            </div>
-        </div>
-
+    
 
         <div>
             <h2>Total carrito:</h2>
@@ -54,7 +33,7 @@
             
 
         </div>
-    </div>
+    </section>
 
     <script src="js/carrito.js"></script>
 </body>

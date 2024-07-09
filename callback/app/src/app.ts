@@ -47,4 +47,8 @@ export interface Task {
   export const deleteTask = (id: number): void => {
     tasks = tasks.filter(task => task.id !== id);
   };
+
+  export const deleteAllTasks = (): void => {
+    tasks = [];
+  };  
   
