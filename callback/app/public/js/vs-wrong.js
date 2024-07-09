@@ -32,10 +32,18 @@ function updateThrottleFullText(count) {
   const throttleFullText = document.getElementById('throttle-full');
   throttleFullText.textContent = count;
 }
-
-const debounceClickFull = useDebounce(updateDebounceFullText,'/bad-debounce-full', 2000);
+const debounceClickFull = ()=>{
+    fetch("/wrong-debounce-full").then(res=>{
+        if(!res.ok)throw new Error("Network res was not ok")
+        return res.json()
+    }).then(data=>{
+        console.log("Debounced count incremented: ", data.count)
+        updateDebounceFullText(data.count)
+    })
+}
+// const debounceClickFull = useDebounce(updateDebounceFullText,'/debounce-full', 2000);
 const throttleClickFull = throttle(() => {
-  fetch('/bad-throttle-full')  
+  fetch('/wrong-throttle-full')  
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
@@ -71,8 +79,8 @@ const updateDefaultMixedText = ()=>{
   defaultMixedCount++;
   incrementCountServer(defaultMixedText, defaultMixedCount);
 } 
-const debounceClickMixed = useDebounce((count)=>debounceMixedText.textContent = count, '/bad-debounce-wrong',200);
-const throttleClickMixed = useDebounce((count)=>throttleMixedText.textContent = count, '/bad-throttle-wrong',200);
+const debounceClickMixed = useDebounce((count)=>debounceMixedText.textContent = count, '/wrong-debounce-wrong',200);
+const throttleClickMixed = useDebounce((count)=>throttleMixedText.textContent = count, '/wrong-throttle-wrong',200);
 
 document.getElementById('incrementWrongButton').addEventListener('click', () => {
   updateDefaultMixedText();

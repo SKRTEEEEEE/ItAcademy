@@ -40,5 +40,6 @@ const incrementThrottleMixedCount = (req: Request, res: Response) => {
 
 export const badDebouncedFullIncrement = debounce(incrementDebounceFullCount, 2000);
 export const badThrottledFullIncrement = throttle(incrementThrottleFullCount, 2000);
+//'not working' example
 export const badDebouncedMixedIncrement = debounce(incrementDebounceMixedCount, 2000);
 export const badThrottledMixedIncrement = throttle(incrementThrottleMixedCount, 2000);
