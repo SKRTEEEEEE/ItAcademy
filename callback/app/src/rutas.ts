@@ -3,7 +3,7 @@ import path from "path"
 import {  handleAddTask, handleCompleteTask, handleDeleteAllTasks, handleDeleteTask, handleGetGoodTasks } from "./handle/good-todo";
 import { debouncedAddTask, debouncedCompleteTask, debouncedDeleteTask, handleGetBadTasks } from "./handle/bad-todo";
 import { badDebouncedFullIncrement, badDebouncedMixedIncrement, badThrottledFullIncrement, badThrottledMixedIncrement } from "./handle/vs";
-import { goodDebouncedMixedIncrement, goodThrottledMixedIncrement, incrementDebounceFullCount,  incrementThrottleFullCount } from "./handle/wrong-vs";
+import { goodDebouncedFullIncrement, goodThrottleFullIncrement, incrementDebounceMixedCount, incrementThrottleMixedCount } from "./handle/wrong-vs";
 import { debouncedFetch } from "./handle/memoize";
 
 const rutas = express.Router();
@@ -15,9 +15,9 @@ rutas.get('/',(req,res)=>{
     res.sendFile('index.html');
 })
 
-//Debounce 'todo' examples
+//TODO DEBOUNCE EXAMPLES
 rutas.delete("/tasks/", handleDeleteAllTasks)
-//Good debounce example
+//GOOD DEBOUNCE
 rutas.get("/todo-debounce",(req,res)=>{
     res.sendFile('todo-debounce.html',  { root: publicDirectory });
 })
@@ -26,7 +26,7 @@ rutas.put("/tasks/:id/complete", handleCompleteTask)
 rutas.delete("/tasks/:id", handleDeleteTask) 
 rutas.post("/tasks/", handleAddTask)
 rutas.get("/tasks/", handleGetGoodTasks)
-//Bad debounce example
+//BAD DEBOUNCE
 rutas.get("/todo-bad-debounce",(req, res)=>{
     res.sendFile('todo-bad-debounce.html', { root: publicDirectory });
 })
@@ -36,8 +36,8 @@ rutas.delete("/bad-tasks/:id", debouncedDeleteTask)
 rutas.post("/bad-tasks/", debouncedAddTask)
 rutas.get("/bad-tasks/", handleGetBadTasks)
 
-//Vs examples
-//Bad vs
+//VS EXAMPLES
+//NORMAL VS
 rutas.get("/vs",(req, res)=>{
     res.sendFile('vs.html', { root: publicDirectory });
 })
@@ -48,19 +48,21 @@ rutas.get("/throttle-full", badThrottledFullIncrement)
 rutas.get("/debounce-wrong", badDebouncedMixedIncrement)
 rutas.get("/throttle-wrong", badThrottledMixedIncrement)
 
-//Good vs
+//TEST VS
 rutas.get("/vs-wrong",(req, res)=>{
     res.sendFile('vs-wrong.html', { root: publicDirectory });
 })
-
-rutas.get("/wrong-debounce-full",incrementDebounceFullCount)
-rutas.get("/wrong-throttle-full",incrementThrottleFullCount)
-rutas.get("/wrong-debounce-wrong", goodDebouncedMixedIncrement)
-rutas.get("/wrong-throttle-wrong", goodThrottledMixedIncrement)
+//good counts
+rutas.get("/wrong-debounce-full",goodDebouncedFullIncrement)
+rutas.get("/wrong-throttle-full",goodThrottleFullIncrement)
+//wrong counts
+// en el wrong counts, intentamos aplicar la misma solución que en el debounce (todo-debounce), pero esto no funciona
+rutas.get("/wrong-debounce-wrong", incrementDebounceMixedCount)
+rutas.get("/wrong-throttle-wrong", incrementThrottleMixedCount)
 
 export default rutas;
 
-//Pokemon examples
+//POKEMON EXAMPLE
 rutas.get("/memoize",(req, res)=>{
     res.sendFile('memoize.html', { root: publicDirectory });
 })

@@ -6,21 +6,41 @@
   <title>Throttle vs Debounce App</title>
   <link rel="stylesheet" href="output.css">
 </head>
-<body class="flex min-h-screen flex-col items-center justify-evenly bg-gray-100">
-  <section class="mb-8 w-full rounded-lg bg-white px-8 py-6 shadow-lg sm:w-11/12 md:w-5/6 lg:w-4/6">
-    <h1 class="mb-4 text-3xl font-semibold" tabindex="0">Throttle vs Debounce App</h1>
-    <a href="https://github.com/SKRTEEEEEE/markdowns/blob/main/utils/learn-techs/backend/callback-lim.md#debounce-vs-throttle" target="_blank" class="text-blue-600 hover:underline">
-      <p class="text-base">Enlace al repositorio con más información</p>
-    </a>
+<body class="flex min-h-screen flex-col items-center justify-evenly bg-black">
+  <section class="mb-8 w-full rounded-lg bg-red-100 border-2 border-red-400 shadow-green-300 px-8 py-6 shadow-lg sm:w-11/12 md:w-5/6 lg:w-4/6">
+    <div class="flex flex-col sm:flex-row items-center justify-between mb-4">
+      <h1 class=" text-3xl font-semibold" tabindex="0">Throttle vs Debounce App part 2</h1>
+      <span class="flex gap-2">
+      <a href="/"
+        ><div class=" h-12 w-28 rounded-md border bg-blue-50 border-white p-0.5 text-3xl ">
+          🏡
+          <span class="absolute text-sm font-semibold"
+            >Back to <br />
+            menu</span
+          >
+        </div></a
+      >
+      <a href="/vs-wrong"
+        ><div class="h-12 w-28 rounded-md border bg-blue-50 border-white p-0.5 text-3xl ">
+          ➡️
+          <span class="absolute text-sm font-semibold"
+            >Next <br />
+            lesson</span
+          >
+        </div></a
+      ></span>
+    </div>
+    
     <p class="leading-relaxed" tabindex="0">
-      En esta app tenemos una comparativa de las funciones debounce() y throttle(), capturando el click del botón.
+      Comparativa de las funciones debounce() y throttle(), capturando el click del botón.
+      <p class="text-blue-950 text-base mt-2">👇 Click aquí, <a class="underline" href="https://github.com/SKRTEEEEEE/markdowns/blob/main/utils/learn-techs/backend/callback-lim.md" target="_blank">para obtener mas información</a> o <a class="underline" href="#">seguir este curso.</a></p>
       <br />
-      <i class="text-xs leading-[0]">Encontraremos una diferencia en el uso del cliente y del servidor (Wrong example), esto es porque en el servidor, se acumulan las peticiones y las deja en espera. Para solucionar esto podríamos limpiar la petición cada vez que se llama de nuevo o hacer debounce/throttle en el cliente y en el servidor (Good example).</i>
+      <i class="text-xs leading-[0]">En este ejemplo, hemos intentado aplicar la misma solución que en el <a class="underline text-blue-200" href="/todo-debounce">todo debounce example</a>, pero esto no funciona. Por lo tanto, podemos observar como la mejor manera es siempre integrar tanto en el cliente como en el servidor las funciones.</i>
     </p>
   </section>
 
   <div class="flex w-full flex-col space-y-4 px-4 sm:w-11/12 sm:flex-row sm:space-x-4 sm:space-y-0 sm:px-0 md:w-5/6 lg:w-4/6">
-    <section class="w-full rounded-lg border border-blue-600 bg-white p-6 shadow-md sm:w-1/3">
+    <section class="w-full rounded-lg border border-blue-600 bg-gray-100 p-6 shadow-md sm:w-1/3">
       <h2 class="mb-4 h-[50px] text-xl font-semibold" tabindex="0">Server Wrong Counts</h2>
       <div class="mb-0 md:mb-2" tabindex="0">
         <b class="text-base sm:text-xs md:text-base" aria-describedby="default-server-info">Default Server:</b>
@@ -39,7 +59,7 @@
       </div>
       <button id="incrementWrongButton" class="mt-4 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 hover:shadow-md hover:shadow-blue-600 shadow-blue-400 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600">Increment Counts</button>
     </section>
-    <section class="w-full rounded-lg border border-blue-600 bg-white p-6 shadow-md sm:w-1/3">
+    <section class="w-full rounded-lg border border-blue-600 bg-gray-100 p-6 shadow-md sm:w-1/3">
       <h2 class="mb-4 h-[50px] text-xl font-semibold" tabindex="0">Server Good Counts</h2>
       <div class="mb-0 md:mb-2" tabindex="0">
         <b class="text-base sm:text-xs md:text-base" aria-describedby="default-server-good-info">Default Server:</b>
@@ -59,7 +79,7 @@
       <button id="incrementFullButton" class="mt-4 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 hover:shadow-md hover:shadow-blue-600 shadow-blue-400 shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-600">Increment Counts</button>
     </section>
 
-    <section class="w-full rounded-lg border border-blue-600 bg-white p-6 shadow-md sm:w-1/3">
+    <section class="w-full rounded-lg border border-blue-600 bg-gray-100 p-6 shadow-md sm:w-1/3">
       <h2 class="mb-4 h-[50px] text-xl font-semibold" tabindex="0">Client Counts</h2>
       <div class="mb-0 md:mb-2" tabindex="0">
         <b class="text-base sm:text-xs md:text-base" aria-describedby="default-client-info">Default Client:</b>
@@ -80,6 +100,6 @@
     </section>
   </div>
 
-  <script src="js/vs-wrong.js"></script>
+  <script src="js/vs.js"></script>
 </body>
 </html>

@@ -12,6 +12,15 @@ const useDebounce = (fn, path, time) =>{
       .catch(error => console.error('Error fetching count:', error));
   },time)
 }
+
+
+
+
+
+
+
+
+
 //Good Example
 const defaultFullText = document.getElementById('default-full');
 let defaultFullCount = 0;
@@ -64,16 +73,23 @@ document.getElementById('incrementFullButton').addEventListener('click', () => {
 
 });
 
+
+
+
+
+
+
+
+
+
+
 // Wrong Example
+// En este ejemplo solo aplicamos debounce de 0.2 seg para no acumular peticiones, aun asi debería fallar pero hay veces que no falla.
 const defaultMixedText = document.getElementById('default-wrong');
 const debounceMixedText = document.getElementById('debounce-wrong');
 const throttleMixedText = document.getElementById('throttle-wrong');
 let defaultMixedCount = 0;
-
-
-
 // ...esto te llevara al infierno 👽🔫
-
 
 const updateDefaultMixedText = ()=>{
   defaultMixedCount++;
@@ -88,6 +104,12 @@ document.getElementById('incrementWrongButton').addEventListener('click', () => 
   debounceClickMixed()
   throttleClickMixed()
   });
+
+
+
+
+
+
 
 
 // Client Example
