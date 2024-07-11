@@ -8,6 +8,8 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY tailwind.config.js ./
+COPY tailwind.css ./
+COPY types.d.ts ./
 COPY ./src ./src
 COPY ./public ./public
 
