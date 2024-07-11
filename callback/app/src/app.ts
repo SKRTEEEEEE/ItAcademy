@@ -1,9 +1,26 @@
+// import fetch from 'node-fetch';
+import axios from 'axios';
+
+
 // Funciones App To Do List
 export interface Task {
     id: number;
     description: string;
     completed: boolean;
   }
+
+  export type Pokedex = {
+    count:    number;
+    next:     string;
+    previous: string;
+    results:  Result[];
+}
+
+export type Result = {
+    name: string;
+    url:  string;
+}
+
   
   export let tasks: Task[] = [];
   
@@ -53,14 +70,13 @@ export interface Task {
 //Funciones app Pokemon
 const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon';
 
-export const fetchPokemonData = async (offset: number, limit: number) => {
+export const fetchPokemonData = async (offset: number, limit: number): Promise<Result[]> => {
   try {
-    const response = await fetch(`${POKEAPI_URL}?offset=${offset}&limit=${limit}`);
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    const data = await response.json();
-    return data.results;
+    const url = `${POKEAPI_URL}?offset=${offset}&limit=${limit}`;
+    console.log(`Fetching data from: ${url}`);
+    const response = await axios.get<Pokedex>(url);
+    console.log(`Data received: ${JSON.stringify(response.data)}`);
+    return response.data.results;
   } catch (error) {
     console.error('Error fetching Pokémon data:', error);
     throw error;
