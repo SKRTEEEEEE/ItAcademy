@@ -1,0 +1,12 @@
+{
+  "name": "my-hexagonal-app",
+  "version": "1.0.0",
+  "description": "Simple example of Hexagonal Architecture in Node.js",
+  "scripts": {
+    "start": "node src/infrastructure/server/index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "type": "module"
+}
