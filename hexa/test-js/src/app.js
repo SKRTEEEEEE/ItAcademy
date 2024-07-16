@@ -1,20 +1,20 @@
 
-import express from 'express';
-import bodyParser from 'body-parser'; 
-import { InMemoryUserRepository } from './infrastructure/repositories/InMemoryUserRepository';
-import UserController from './infrastructure/controllers/UserController';
 
 
+const express = require('express');
+const InMemoryUserRepository = require('./infrastructure/repositories/InMemoryUserRepository');
+const UserController = require('./infrastructure/controllers/UserController');
 
-export function createApp() {
+const createApp = () => {
   const app = express();
-  app.use(bodyParser.json());
+app.use(express.json());
 
-  const userRepository = new InMemoryUserRepository();
-  const userController = new UserController(userRepository);
+const userRepository = new InMemoryUserRepository();
+const userController = new UserController(userRepository);
 
-  app.post('/users', (req, res) => userController.createUserHandler(req, res));
+app.post('/users', (req, res) => userController.createUserHandler(req, res));
 
   return app;
 }
 
+module.exports = createApp;

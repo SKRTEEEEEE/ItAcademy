@@ -1,5 +1,5 @@
-// src/infrastructure/repositories/InMemoryUserRepository.js
-import UserRepository from '../../domain/ports/UserRepository';
+const UserRepository = require('../../domain/ports/UserRepository');
+const User = require('../../domain/entities/User');
 
 class InMemoryUserRepository extends UserRepository {
   constructor() {
@@ -19,4 +19,4 @@ class InMemoryUserRepository extends UserRepository {
   }
 }
 
-export default InMemoryUserRepository;
+module.exports = InMemoryUserRepository;

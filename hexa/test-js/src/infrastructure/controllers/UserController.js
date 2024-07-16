@@ -1,6 +1,6 @@
-import { CreateUser } from "../../app/usecases/CreateUser";
+const CreateUser = require('../../application/usecases/CreateUser');
 
-export default class UserController {
+class UserController {
   constructor(userRepository) {
     this.createUser = new CreateUser(userRepository);
   }
@@ -12,3 +12,4 @@ export default class UserController {
   }
 }
 
+module.exports = UserController;
