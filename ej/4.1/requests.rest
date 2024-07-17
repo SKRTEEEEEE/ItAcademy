@@ -1,0 +1,34 @@
+@username = LoveNode
+@password = Forever
+
+@base64Auth = TG92ZU5vZGU6Rm9yZXZlcg==
+
+
+
+# Anadir una tarea
+
+POST http://localhost:4001/tasks
+Authorization: Basic {{base64Auth}}
+Content-Type: application/json
+
+{
+    "description": "Nueva Tarea para Test"
+}
+
+###
+
+# Listar todas las tareas
+GET http://localhost:4001/tasks
+Authorization: Basic {{base64Auth}}
+
+###
+
+# Completar una tarea
+PUT http://localhost:4001/tasks/1/complete
+Authorization: Basic {{base64Auth}}
+
+###
+
+# Eliminar una tarea
+DELETE http://localhost:4001/tasks/1
+Authorization: Basic {{base64Auth}}
