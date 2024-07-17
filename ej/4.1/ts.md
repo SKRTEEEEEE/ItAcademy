@@ -1,2 +1,0 @@
-Herencia de classes
-Testing
