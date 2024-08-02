@@ -1,6 +1,6 @@
 # Ejercicio 2 del nivel 1
 ## Diagrama
-![Diagrama bdd ej1-2 sql It Academy](./ej1-2sql.png)
+![Diagrama bdd ej1 lvl1-2 sql It Academy](./ej1-2sql.png)
 
 ## [Archivo .sql](./pizzeria.sql)
 Archivo .sql para la creación de la base de dato y el volcado de datos de prueba 'default'

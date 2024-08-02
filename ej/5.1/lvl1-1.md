@@ -2,7 +2,7 @@
 
 ## Diagrama 
 
-![Diagrama bdd ej1-1 sql It Academy](./ej1sql-diagram.png)
+![Diagrama bdd ej1 lvl1-1 sql It Academy](./ej1-1sql.png)
 
 ## [Archivo .sql](./culampolla.sql)
 Archivo .sql para la creación de la base de dato y el volcado de datos de prueba 'default'
