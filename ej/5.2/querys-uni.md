@@ -1,7 +1,7 @@
-# Exercisis SQL querys base de dades 'Universidad'
+# Ejercicios SQL queries: 'Universidad'
 
 1. **Retorna un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos.**  
-   El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre.
+   - El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre.
    ```sql
    SELECT p.apellido1, p.apellido2, p.nombre FROM persona p 
     WHERE p.tipo = 'alumno' 
@@ -30,8 +30,8 @@
     AND id_grado = 7;
     ```   
 6. **Retorna un listado de los profesores junto con el nombre del departamento al que están vinculados.**  
-   El listado debe retornar cuatro columnas: primer apellido, segundo apellido, nombre y nombre del departamento.  
-   El resultado estará ordenado alfabéticamente de menor a mayor por los apellidos y el nombre.
+   - El listado debe retornar cuatro columnas: primer apellido, segundo apellido, nombre y nombre del departamento.  
+   - El resultado estará ordenado alfabéticamente de menor a mayor por los apellidos y el nombre.
     ```sql
     SELECT p.apellido1, p.apellido2, p.nombre, d.nombre AS nombre_departamento
     FROM profesor pr

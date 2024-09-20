@@ -1,4 +1,4 @@
-# Exercisis SQL querys base de dades 'Tienda'
+# Exercisis SQL queries: 'Tienda'
 
 1. **Llista el nom de tots els productes que hi ha en la taula `producto`.**
     ```sql
