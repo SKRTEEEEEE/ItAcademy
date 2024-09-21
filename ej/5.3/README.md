@@ -850,33 +850,61 @@ Actual ejercicio 2.3, antiguo ejercicio 5.3 del curso de [NodeJS](https://nodejs
 
 </details>
 
-#### ....🖊️🎉🧰💶
+<details><summary><code><bold>Nivel 3</bold> </code></summary><br/>
+
+- _En este caso se utiliza un script de ts, junto a mongoose, para crear y poblar la base de datos_
+##### Proceso elaboración
+- _**No necesario una vez clonado!**_
+1. Crear tipos bdd. Podemos [ver el archivo de tipos, haciendo click aquí](./src/types.d.ts)
+2. Crear esquemas bdd utilizando mongoose. Podemos [ver el archivo de esquemas, haciendo click aquí](./src/schemas.ts)
+3. Crear función para obtener conexión a nuestro entorno. Podemos [ver el archivo con la función de conexión, haciendo click aquí](./src/lib.ts)
+4. Crear función principal encargada de ejecutar la conexión, crear y poblar la base de datos. Podemos ver [el archivo script de creación y población de la bdd, haciendo click aquí!](./src/initDb-script.ts)
+##### Instalación dependencias
+- Para instalar las dependencias, usar el siguiente comando:
+```bash
+npm i
+```
+##### Ejecutar script
+- Ejecutar script para crear y poblar las bases de datos
+```
+npx ts-node src/initDb-script.ts
+```
+
+</details>
+
+
+<details><summary><code><bold>Extracción bdd y diagramas</bold> </code></summary><br/>
+
 ##### Descargar y configurar/instalar [MongoDB Command Line Database Tools](https://www.mongodb.com/try/download/database-tools)
 - _Si no tenemos MongoDB Command Line Database Tools_
-- Descargamos la version actual de MongoDB Command Line Database Tools, podemos encontrar-la en [esta pagina](https://www.mongodb.com/try/download/database-tools).
-- Descargaremos la version para el tipo de arquitectura que utilize nuestro PC(x64/x32). 
-- Descomprimiremos el archivo descargado, en la carpeta deseada, se recomienda en `C:\Program Files\MongoDB`. Se recomienda cambiar el nombre a la carpeta a `Tools`.
-##### Volcado de datos usando `mongoimport`
-- Copiamos [el archivo de la collección](./restaurants.json) en la carpeta de Documents de nuestro usuario.
-- Abrimos PowerShell con permisos de administrador, para ello en Inicio, buscamos PowerShell, hacemos click con el botón derecho y hacemos click en la opción `Ejecutar como Administrador`.
-- Navegamos a la carpeta, utilizando el siguiente comando:
+- Descargar la version actual de MongoDB Command Line Database Tools, encuentra-la en [esta pagina](https://www.mongodb.com/try/download/database-tools).
+- Descargar la version para el tipo de arquitectura que utilize nuestro PC(x64/x32). 
+- Descomprimir el archivo descargado, en la carpeta deseada, se recomienda en `C:\Program Files\MongoDB`. Se recomienda cambiar el nombre a la carpeta a `Tools`.
+##### Exportar colecciones usando `mongoexport`
+- Abrir PowerShell con permisos de administrador: Buscar PowerShell, hacer click con el botón derecho y hacer click en la opción `Ejecutar como Administrador`.
+- Navegar a la carpeta, utilizando el siguiente comando:
   ```powershell
   cd "C:\Program Files\MongoDB\Tools\bin"
   ```
-- Una vez ubicados en la carpeta, procederemos al volcado de la base de datos, utilizando el siguiente comando base:
+- Una vez ubicado en la carpeta, proceder a la extracción de nuestro documento de la bdd en formato json, para ello utiliza este comando base:
   ```PowerShell
-  .\mongoimport.exe -d <nombre-bdd> --collection <nombre-collection> --file "<ubicación-archivo>" --jsonArray
+  .\mongoexport.exe --db <nombre-bdd> --collection <nombre-collection> --out <ruta-carpeta>/<archivo-salida>.json --jsonArray
   ```
-  - En nuestro caso utilizaremos este, pero **recuerda** sustituir con el nombre de tu usuario de Pc en el campo `<tu-usuario>`:
-  ```PowerShell
-  .\mongoimport.exe -d rest-test1 --collection rest-test1 --file "C:\Users\<tu-usuario>\Documentos\restaurants.json" --jsonArray
-  ```
-  - Una vez lanzado el comando, nos debería aparecer este mensaje en la terminal:
-  ```PowerShell
-  2024-09-19T22:11:21.588+0200    connected to: mongodb://localhost/
-  2024-09-19T22:11:21.783+0200    3772 document(s) imported successfully. 0 document(s) failed to import.
-  ```
-- En este punto, en tu MongoDBCompass podrás visualizar la base de datos con su colección creada.
+
+  - En este caso, para la colección de usuarios de la base de datos, puedes utilizar este, pero **recuerda** sustituir con el nombre de tu usuario de Pc en el campo `<tu-usuario>`:
+    ```PowerShell
+    .\mongoexport.exe --db culDAmpolla --collection clientes --out "C:/Users/<tu-usuario>/Documents/culdamp.clientes.json" --jsonArray
+
+    ```
+
+  - Una vez lanzado el comando, debe aparecer este mensaje en la terminal:
+    ```PowerShell
+    2024-09-21T16:38:13.539+0200    connected to: mongodb://localhost/
+    2024-09-21T16:38:13.575+0200    exported 2 records
+    ```
+- En este punto, en la carpeta de documentos podrás visualizar la colección creada.
+
+</details>
 
 ## Contacto
 
