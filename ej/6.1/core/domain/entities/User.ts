@@ -2,10 +2,10 @@
 
 export class User {
     constructor(
-      public id: number | null,
+      public id: number,
       public email: string,
       public name: string | null,
-      public role: 'USER' | 'ADMIN' = 'USER',
+      public role: string,
       public banned: boolean = false
     ) {}
   }

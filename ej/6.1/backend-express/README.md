@@ -17,6 +17,26 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 - [**prisma**](https://www.prisma.io/docs)
 - [**typescript**](https://www.typescriptlang.org/docs/)
 
+### Requisitos 
+#### Requisitos técnicos endpoints
+- 🖊️ user (faltaria banear?),
+##### Requisitos frontend
+- Posibilidad buscar posts -> que contengan ciertas letras como titulo
+- Crear usuario
+- Read usuario por email
+- Read todas las publicaciones
+- Read usuario (?por id?)
+- Update usuario
+##### Requisitos backend
+- Crear publicaciones
+- Crear like
+- Read publicaciones por user
+- Delete publicaciones por user
+- Editar publicaciones por user
+- **Solo admin**
+  - Read todos los usuarios
+  - Banear/Reactivas usuarios
+  - Delete publicaciones
 
 
 ## [Recursos](https://github.com/SKRTEEEEEE/markdowns/)

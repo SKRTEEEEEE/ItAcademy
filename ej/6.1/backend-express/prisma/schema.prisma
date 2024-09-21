@@ -17,8 +17,7 @@ model User {
   banned     Boolean    @default(false)
   role       String     @default("USER")
   posts      Post[]
-  likedPosts LikePost[]
-
+  likePosts LikePost[]
 }
 
 model Post {

@@ -4,18 +4,14 @@ import { Prisma, PrismaClient } from '@prisma/client';
 import {UserRepository}from "../../../core/application/repositories/user"
 import {User} from "../../../core/domain/entities/User"
 
-
-// Me da por culo lo de parsear, he de recuperar el modelo de prisma
-
 export class PrismaUserRepository implements UserRepository {
   constructor(private prisma: PrismaClient) {}
 
   async create(userData: Omit<User, 'id'>): Promise<User> {
     try {
-      const user = await this.prisma.user.create({
+      return await this.prisma.user.create({
         data: userData,
       });
-      return this.mapPrismaUserToDomainUser(user);
     } catch (error) {
       this.handleError(error, 'Failed to create user');
     }
@@ -23,8 +19,7 @@ export class PrismaUserRepository implements UserRepository {
 
   async readById(id: number): Promise<User | null> {
     try {
-      const user = await this.prisma.user.findUnique({ where: { id } });
-      return user ? this.mapPrismaUserToDomainUser(user) : null;
+      return await this.prisma.user.findUnique({ where: { id } });
     } catch (error) {
       this.handleError(error, 'Failed to find user by id');
     }
@@ -32,16 +27,14 @@ export class PrismaUserRepository implements UserRepository {
 
   async readByEmail(email: string): Promise<User | null> {
     try {
-      const user = await this.prisma.user.findUnique({ where: { email } });
-      return user ? this.mapPrismaUserToDomainUser(user) : null;
+      return await this.prisma.user.findUnique({ where: { email } });
     } catch (error) {
       this.handleError(error, 'Failed to find user by email');
     }
   }
     async readAll(): Promise<User[]> {
         try {
-            const users = await this.prisma.user.findMany({ include: { posts: true } });
-            return users.map(this.mapPrismaUserToDomainUser);
+            return await this.prisma.user.findMany({ include: { posts: true, likePosts: true  } });
         } catch (error) {
             this.handleError(error, 'Failed to find all users');
         }
@@ -49,33 +42,22 @@ export class PrismaUserRepository implements UserRepository {
 
     async update(id: number, userData: Prisma.UserUpdateInput): Promise<User> {
         try {
-        const updatedUser = await this.prisma.user.update({
+        return await this.prisma.user.update({
             where: { id },
             data: userData,
         });
-        return this.mapPrismaUserToDomainUser(updatedUser);
         } catch (error) {
         this.handleError(error, 'Failed to update user');
         }
     }
   
-  async delete(id: number): Promise<void> {
-    try {
-      await this.prisma.user.delete({ where: { id } });
-    } catch (error) {
-      this.handleError(error, 'Failed to delete user');
-    }
-  }
-
-  private mapPrismaUserToDomainUser(prismaUser: Prisma.UserGetPayload<{}>): User {
-    return new User(
-      prismaUser.id,
-      prismaUser.email,
-      prismaUser.name,
-      prismaUser.role as 'USER' | 'ADMIN',
-      prismaUser.banned
-    );
-  }
+//   async delete(id: number): Promise<void> {
+//     try {
+//       await this.prisma.user.delete({ where: { id } });
+//     } catch (error) {
+//       this.handleError(error, 'Failed to delete user');
+//     }
+//   }
 
   private handleError(error: unknown, message: string): never {
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
