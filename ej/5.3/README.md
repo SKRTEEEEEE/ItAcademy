@@ -30,13 +30,13 @@ Actual ejercicio 2.3, antiguo ejercicio 5.3 del curso de [NodeJS](https://nodejs
 
   Imagina que tenemos la siguiente interfaz gráfica, desde el punto de vista de un cliente de la Óptica. ¿Cómo diseñarías la base de datos que facilitara la información?
 
-  ![Imagen ejemplo frontend ejercicio](./mongodb1.jpg)
+  ![Imagen ejemplo frontend ejercicio](./public/mongodb1.jpg)
 
 - Ejercicio 2, nivel 1
 
   ¿Y si el punto de vista fuera de la interfaz fueran las gafas?
 
-  ![Imagen ejemplo frontend ejercicio](./mongodb2.jpg)
+  ![Imagen ejemplo frontend ejercicio](./public/mongodb2.jpg)
 
 #### **Nivel 2:**
 - Te han contratado para diseñar una web que permita realizar pedidos de comida a domicilio por Internet.
@@ -55,7 +55,26 @@ Actual ejercicio 2.3, antiguo ejercicio 5.3 del curso de [NodeJS](https://nodejs
 
   6. En una tienda pueden trabajar muchos empleados y un empleado sólo puede trabajar en una tienda. De cada empleado/a, se almacena un identificador único: Nombre, apellidos, NIF, Teléfono, si trabaja como cocinero/ao repartidor/a. Para los pedidos de reparto a domicilio interesa guardar quién es el repartidor/a que hace la entrega del pedido y la fecha/hora del momento de la entrega.
 
-  ![Imagen ejemplo frontend ejercicio](./mongodblvl2.jpg)
+  ![Imagen ejemplo frontend ejercicio](./public/mongodblvl2.jpg)
+
+#### **Nivel 3:**
+- Trataremos de hacer un modelo sencillo de cómo sería la base de datos para una versión reducida de YouTube.
+
+  1. De cada usuario/a guardamos un identificador único: Email, password, nombre de usuario/a, fecha de nacimiento, sexo, país, código postal.
+
+  2. Un usuario/a publica vídeos. De cada vídeo guardamos un identificador único: Un título, una descripción, un tamaño, el nombre del archivo de vídeo, duración del vídeo, un thumbnail, el número de reproducciones, el número de likes, el número de dislikes.
+
+  3. Un vídeo puede tener tres estados distintos: público, oculto y privado. Un vídeo puede tener muchas etiquetas. Interesa guardar quién es el usuario/a que publica el vídeo y en qué fecha/hora lo hace.
+
+  4. Un usuario puede crear un canal. Un canal tiene un identificador único: Un nombre, una descripción, una fecha de creación.
+
+  5. Un usuario/a puede suscribirse a los canales de otros usuarios/as. Un usuario puede darle un like o un dislike a un vídeo una única vez. Habrá que llevar un registro de los usuarios/as que le han dado like y dislike a un determinado vídeo y en qué fecha/hora lo hicieron.
+
+  6. Un usuario puede crear playlists con los vídeos que le gustan. Cada playlist tiene un identificador único: un nombre, una fecha de creación, un estado que indica que puede ser pública o privada.
+
+  7. Un usuario puede escribir comentarios en un vídeo determinado. Cada comentario está identificado por un identificador único: El texto del comentario, la fecha/hora en la que se realizó.
+
+  ![Imagen ejemplo frontend ejercicio](./public/mongodblvl3.jpg)
 
 </details>
 
