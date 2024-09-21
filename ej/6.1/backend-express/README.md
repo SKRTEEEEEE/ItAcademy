@@ -39,6 +39,7 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 
 
 ## [Recursos](https://github.com/SKRTEEEEEE/markdowns/)
+- [The Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 ### Requerimientos
 
 
