@@ -6,21 +6,19 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-enum Role {
-  USER
-  ADMIN
-}
+
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  name     String?
-  banned   Boolean @default(false)
-  role     Role @default(USER)
-  posts    Post[]
+  id         Int        @id @default(autoincrement())
+  email      String     @unique
+  name       String?
+  banned     Boolean    @default(false)
+  role       String     @default("USER")
+  posts      Post[]
   likedPosts LikePost[]
+
 }
 
 model Post {
