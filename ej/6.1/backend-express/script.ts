@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { readAll } from './interface/controllers/user'
 
 const prisma = new PrismaClient()
 
@@ -31,11 +32,12 @@ async function main() {
   //   },
   // })
   // console.log(user)
-  const usersWithPosts = await prisma.user.findMany({
-    include: {
-      posts: true,
-    },
-  })
+  // const usersWithPosts = await prisma.user.findMany({
+  //   include: {
+  //     posts: true,
+  //   },
+  // })
+  const usersWithPosts = await readAll()
   console.dir(usersWithPosts, { depth: null })
 }
 
