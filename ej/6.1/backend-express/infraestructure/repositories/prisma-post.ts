@@ -4,7 +4,7 @@ import { PostRepository } from "../../../core/application/repositories/post"
 
 export class PrismaPostRepository extends PrismaClientConfig implements PostRepository {
 
-    async create(postData: Omit<Post, "id" | "deleted">, userId: number): Promise<Post> {
+    async create(postData: {title:string, content:string}, userId: number): Promise<Post> {
         return await this.prisma.post.create({
             data: {
                 title: postData.title,
@@ -18,6 +18,11 @@ export class PrismaPostRepository extends PrismaClientConfig implements PostRepo
 
     async readAll(): Promise<Post[]> {
         return await this.prisma.post.findMany();
+    }
+    async readById(id: number): Promise<Post | null> {
+        return await this.prisma.post.findUnique({
+            where: { id },
+        });
     }
 
     async delete(id: number): Promise<Post> {

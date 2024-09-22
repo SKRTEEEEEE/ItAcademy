@@ -1,23 +1,23 @@
 
 import express,{ Application, NextFunction, Request, Response } from "express";
 import { NoAuthenticateRouter, UserRouter } from "./user";
-import { ExpressPostRouter } from "./post";
+import { PostRouter } from "./post";
 import { authenticateJWT } from "../controllers/auth";
 
 export const setupRoutes = (app: Application) => {
   app.use(express.json());
   app.use(NoAuthenticateRouter)
-  app.use((req, res, next) => {
-    console.log("Before authenticateJWT middleware:", req.body);
-    next();
-  });
+  // app.use((req, res, next) => {
+  //   console.log("Before authenticateJWT middleware:", req.body);
+  //   next();
+  // });
   app.use(authenticateJWT)
   // app.use((req, res, next) => {
   //   console.log("After authenticateJWT middleware:", req.body);
   //   next();
   // });
   app.use(UserRouter);
-  app.use(ExpressPostRouter);
+  app.use(PostRouter);
   app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
       console.error(err.stack);

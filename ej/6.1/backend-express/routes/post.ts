@@ -3,13 +3,13 @@ import { PostController } from "../controllers/post";
 
 
 const controller = new PostController()
-const ExpressPostRouter = Router()
+const PostRouter = Router()
 
-ExpressPostRouter.post('/posts', controller.create);
-ExpressPostRouter.get('/posts', controller.readAll);
-ExpressPostRouter.delete('/posts/:id', controller.delete);
-ExpressPostRouter.put('/posts/:id', controller.update);
+PostRouter.post('/posts', controller.create);
+PostRouter.get('/posts', controller.readAll);
+PostRouter.delete('/posts/:id', controller.delete);
+PostRouter.put('/posts/:id', controller.update);
 
 
 
-export {ExpressPostRouter}
+export {PostRouter}

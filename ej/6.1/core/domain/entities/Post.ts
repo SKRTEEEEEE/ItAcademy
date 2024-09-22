@@ -4,5 +4,6 @@ export class Post{
         public title: string,
         public content: string | null,
         public deleted: boolean = false,
+        public authorId: number
     ){}
 }
