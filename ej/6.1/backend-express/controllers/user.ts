@@ -98,8 +98,7 @@ export class UserController {
                 res.status(403).json({ message: 'Forbidden' });
                 throw new UnauthorizedError("user not authorized")
             }
-            console.log(req.body)
-            console.log(req.params.id)
+
             const user = await userRepository.update(parseInt(req.params.id), { name, email, password: hashedPassword })
             if (user) {
                 res.json(user)

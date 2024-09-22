@@ -7,8 +7,8 @@ const secretKey = process.env.JWT_SECRET;
 
 export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
     // Mostrar información de la solicitud para depurar
-    console.log("Authorization Header:", req.headers['authorization']);
-    console.log("Request Body Before JWT Auth:", req.body);
+    // console.log("Authorization Header:", req.headers['authorization']);
+    // console.log("Request Body Before JWT Auth:", req.body);
 
     // Obtener el token del encabezado de autorización
     const token = req.headers['authorization']?.split(' ')[1];
@@ -25,13 +25,13 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
     try {
         // Verificar el token y extraer el payload
         const user = jwt.verify(token, secretKey) as CustomJwtPayload;
-        console.log("JWT Verified, user:", user);
+        // console.log("JWT Verified, user:", user);
 
         // Almacenar el usuario en la solicitud
         req.user = user;
 
         // Verificar el cuerpo de la solicitud después de la autenticación
-        console.log("Request Body After JWT Auth:", req.body);
+        // console.log("Request Body After JWT Auth:", req.body);
 
         // Pasar al siguiente middleware o controlador
         next();

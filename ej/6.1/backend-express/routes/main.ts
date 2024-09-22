@@ -12,10 +12,10 @@ export const setupRoutes = (app: Application) => {
     next();
   });
   app.use(authenticateJWT)
-  app.use((req, res, next) => {
-    console.log("After authenticateJWT middleware:", req.body);
-    next();
-  });
+  // app.use((req, res, next) => {
+  //   console.log("After authenticateJWT middleware:", req.body);
+  //   next();
+  // });
   app.use(UserRouter);
   app.use(ExpressPostRouter);
   app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
