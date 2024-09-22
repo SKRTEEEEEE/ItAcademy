@@ -4,8 +4,8 @@ import bcrypt from 'bcryptjs';
 
 import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
 import {FindDbError, SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
-import { PrismaUserRepository } from "../infraestructure/repositories/prisma-user";
-const userRepository = new PrismaUserRepository()
+import { PrismaUserRepository } from "../infrastructure/repositories/prisma-user";
+export const userRepository = new PrismaUserRepository()
 
 export class UserController {
     // Porque no funciona ❓ 🧠 ⬇️

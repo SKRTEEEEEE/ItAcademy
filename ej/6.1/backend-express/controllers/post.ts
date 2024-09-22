@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { PrismaPostRepository } from "../infraestructure/repositories/prisma-post";
+import { PrismaPostRepository } from "../infrastructure/repositories/prisma-post";
 import { FindDbError, UnauthorizedError } from "../../core/domain/errors/main";
 
 const postRepository = new PrismaPostRepository()

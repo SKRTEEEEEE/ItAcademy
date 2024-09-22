@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { SetEnvError } from '../../core/domain/errors/main';
+import { SetEnvError, UnauthorizedError } from '../../core/domain/errors/main';
 import { CustomJwtPayload } from '../express';
+import { userRepository } from './user';
 
 const secretKey = process.env.JWT_SECRET;
 
-export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+export const authenticateJWT = async(req: Request, res: Response, next: NextFunction) => {
     // Mostrar información de la solicitud para depurar
     // console.log("Authorization Header:", req.headers['authorization']);
     // console.log("Request Body Before JWT Auth:", req.body);
@@ -24,11 +25,16 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
 
     try {
         // Verificar el token y extraer el payload
-        const user = jwt.verify(token, secretKey) as CustomJwtPayload;
+        const decoded = jwt.verify(token, secretKey) as CustomJwtPayload;
         // console.log("JWT Verified, user:", user);
 
         // Almacenar el usuario en la solicitud
-        req.user = user;
+        req.user = decoded;
+        const user = await userRepository.readById(decoded.id);
+        if(!user || user.banned){
+            res.status(403).json({ message: 'Forbidden: User is banned' });
+            throw new UnauthorizedError("User is banned")
+        }
 
         // Verificar el cuerpo de la solicitud después de la autenticación
         // console.log("Request Body After JWT Auth:", req.body);

@@ -37,7 +37,7 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 - **Solo admin**
   - Read todos los usuarios
   - Banear/Reactivar usuarios
-  - Delete publicaciones
+  - Delete publicaciones ⚠️
 
 
 ## [Recursos](https://github.com/SKRTEEEEEE/markdowns/)
