@@ -4,13 +4,14 @@ import { JwtPayload } from 'jsonwebtoken';
 declare global {
     namespace Express {
         interface Request {
-            user?: { id: number; /* otros campos que necesites */ };
+            user?: UserJWT
         }
     }
 }
 
 
-interface CustomJwtPayload extends JwtPayload {
-    id: number; // Asegúrate de que el tipo coincida
-    // Agrega otros campos si es necesario
-}
+interface CustomJwtPayload extends JwtPayload, UserJWT {}
+type UserJWT = {
+    id: number;
+    role: string;
+};

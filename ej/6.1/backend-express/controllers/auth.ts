@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { VerifyErrors } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import { SetEnvError } from '../../core/domain/errors/main';
 import { CustomJwtPayload } from '../express';
 
@@ -41,4 +41,9 @@ export const authenticateJWT = (req: Request, res: Response, next: NextFunction)
     }
 };
 
-// export const authorizationAdmin = (req)
+export const authorizeAdmin = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.user || req.user.role !== 'ADMIN') {
+        return res.status(403).json({ message: 'Forbidden: Admin access required' });
+    }
+    next();
+};

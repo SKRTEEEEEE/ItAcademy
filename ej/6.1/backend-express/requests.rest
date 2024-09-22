@@ -3,9 +3,9 @@ POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-    "name": "Usuario de Prueba id4",
-    "email": "usuario4@prueba.com",
-    "password": "usuarioprueba4"
+    "name": "Usuario de Prueba id5",
+    "email": "usuario5@prueba.com",
+    "password": "usuarioprueba5"
 }
 
 ###
@@ -18,7 +18,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxN
 ###
 
 ### Read un usuario por ID ✅
-GET http://localhost:3000/users/id/3
+GET http://localhost:3000/users/id/5
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MDIyNDM1LCJleHAiOjE3MjcwMjYwMzV9.2NagmZ-MO04k9CpurlqEWaZ7Oj8C1rVtn_ZPw2Pq-fo
 
@@ -49,8 +49,8 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "test3@prueba.com",
-    "password": "usuarioprueba123"
+    "email": "usuario5@prueba.com",
+    "password": "usuarioprueba5"
 }
 
 ###
@@ -58,13 +58,13 @@ Content-Type: application/json
 ### Create Post de un usuario ✅
 
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDIxNDk3LCJleHAiOjE3MjcwMjUwOTd9.9VHGdqjsUC_USqYCWSZnri6qCHWnfYVHxJ3feoukEQY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDI1MDA3LCJleHAiOjE3MjcwMjg2MDd9.qOF7z9OL0iA-vWchVyzblpmZifKgHBttiGntvJ5Dx_s
 Content-Type: application/json
 
 {
     "title": "Título del Post de Prueba",
     "content": "Este es el contenido del post de prueba.",
-    "authorId": 3
+    "authorId": 5
 }
 
 ###
