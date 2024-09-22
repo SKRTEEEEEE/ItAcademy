@@ -1,14 +1,16 @@
 import { Router } from "express";
 import { UserController } from "../controllers/user";
+import { authenticateJWT } from "../controllers/auth";
 
 
 const controller = new UserController()
-const ExpressUserRouter = Router()
+// const NoAuthenticateRouter = Router()
+const UserRouter = Router()
 
-ExpressUserRouter.post("/login", controller.login)
-ExpressUserRouter.post("/signup", controller.register)
-ExpressUserRouter.get("/users", controller.readAll)
-ExpressUserRouter.get("/users/id/:id", controller.readById)
-ExpressUserRouter.get("/users/email/:email", controller.readByEmail)
+UserRouter.post("/login", controller.login)
+UserRouter.post("/signup", controller.register)
+UserRouter.get("/users", authenticateJWT, controller.readAll)
+UserRouter.get("/users/id/:id", authenticateJWT, controller.readById)
+UserRouter.get("/users/email/:email",authenticateJWT, controller.readByEmail)
 
-export {ExpressUserRouter}
+export {UserRouter}

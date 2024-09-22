@@ -1,5 +1,5 @@
 ### Create un nuevo usuario
-POST http://localhost:3000/signup
+POST http://localhost:3000/signup ✅
 Content-Type: application/json
 
 {
@@ -10,21 +10,24 @@ Content-Type: application/json
 
 ###
 
-### Read todos los usuarios
+### Read todos los usuarios ❌
 GET http://localhost:3000/users
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
 
 ###
 
-### Read un usuario por ID
+### Read un usuario por ID ✅
 GET http://localhost:3000/users/id/1
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
 
 ###
 
-### Read un usuario por ID
+### Read un usuario por ID ✅
 GET http://localhost:3000/users/email/usuario@prueba.com
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
 
 ###
 
@@ -39,10 +42,23 @@ Content-Type: application/json
 
 ###
 
-### Post de un usuario
+### Post de un usuario ✅
 
 POST http://localhost:3000/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Content-Type: application/json
+
+{
+    "title": "Título del Post de Prueba",
+    "content": "Este es el contenido del post de prueba.",
+    "authorId": 1
+}
+
+###
+
+### Post de un usuario ❌
+
+POST http://localhost:3000/posts
 Content-Type: application/json
 
 {

@@ -4,7 +4,6 @@ import { SetEnvError } from '../../core/domain/errors/main';
 import { CustomJwtPayload } from '../express';
 
 const secretKey = process.env.JWT_SECRET 
-
 export const authenticateJWT =  (req: Request, res: Response, next: NextFunction) => {
     const token = req.headers['authorization']?.split(' ')[1]; // Obtener el token del encabezado
 
@@ -21,3 +20,4 @@ export const authenticateJWT =  (req: Request, res: Response, next: NextFunction
         res.sendStatus(401); // Unauthorized
     }
 };
+// export const authorizationAdmin = (req)
