@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
-import {SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
+import {FindDbError, SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
 import { PrismaUserRepository } from "../infraestructure/repositories/prisma-user";
 const userRepository = new PrismaUserRepository()
 
@@ -102,6 +102,32 @@ export class UserController {
             const user = await userRepository.update(parseInt(req.params.id), { name, email, password: hashedPassword })
             if (user) {
                 res.json(user)
+            } else {
+                res.status(404).json({ message: 'User not found' })
+            }
+        } catch (error) {
+            next(error)
+        }
+    }
+    async updateBanned (req:Request, res: Response, next:NextFunction): Promise<void>{
+        try {
+            if (!req.user) {
+                res.status(401).json({ message: 'Unauthorized' });
+                throw new UnauthorizedError("user not set in jwt")
+            }
+            if (req.user.role !== "ADMIN") {
+                res.status(403).json({ message: 'Forbidden' });
+                throw new UnauthorizedError("user not authorized")
+            }
+            const user = await userRepository.readById(parseInt(req.params.id))
+            if (!user) {
+                res.status(404).json({ message: 'User not exists' })
+                throw new FindDbError("user")
+            }
+
+            const updatedUser = await userRepository.update(parseInt(req.params.id), { banned: !user.banned })
+            if (updatedUser) {
+                res.json(updatedUser)
             } else {
                 res.status(404).json({ message: 'User not found' })
             }

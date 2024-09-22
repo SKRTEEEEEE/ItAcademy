@@ -2,7 +2,7 @@
 import express,{ Application, NextFunction, Request, Response } from "express";
 import { NoAuthenticateRouter, UserRouter } from "./user";
 import { PostRouter } from "./post";
-import { authenticateJWT } from "../controllers/auth";
+import { authenticateJWT, authorizeAdmin } from "../controllers/auth";
 
 export const setupRoutes = (app: Application) => {
   app.use(express.json());
@@ -16,6 +16,7 @@ export const setupRoutes = (app: Application) => {
   //   console.log("After authenticateJWT middleware:", req.body);
   //   next();
   // });
+  app.use("/admins", authorizeAdmin)
   app.use(UserRouter);
   app.use(PostRouter);
   app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {

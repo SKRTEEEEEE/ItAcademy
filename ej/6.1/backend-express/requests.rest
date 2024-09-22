@@ -11,9 +11,9 @@ Content-Type: application/json
 ###
 
 ### Read todos los usuarios ❌ 
-GET http://localhost:3000/users
+GET http://localhost:3000/admins/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDI1OTk5LCJleHAiOjE3MjcwMjk1OTl9.KPhRXyrIImE-k-mgj_ZCACJUujLh2wlq5qc5r3dMiCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDM0MzMyLCJleHAiOjE3MjcwMzc5MzJ9.8zsceBUJh2bB3db_2xFgeiMOLfxb000tAJWY7OzTyQM
 
 ###
 
