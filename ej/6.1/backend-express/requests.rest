@@ -1,11 +1,11 @@
-### Create un nuevo usuario
-POST http://localhost:3000/signup ✅
+### Create un nuevo usuario ✅
+POST http://localhost:3000/signup 
 Content-Type: application/json
 
 {
-    "name": "Usuario de Prueba",
-    "email": "usuario@prueba.com",
-    "password": "usuarioprueba1"
+    "name": "Usuario de Prueba id3",
+    "email": "usuario3@prueba.com",
+    "password": "usuarioprueba3"
 }
 
 ###
@@ -45,13 +45,13 @@ Content-Type: application/json
 ### Post de un usuario ✅
 
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDIwMjEzLCJleHAiOjE3MjcwMjM4MTN9._RfEPHAwTxVldvwYVi2mJXpABHa5Nsaxz_ZPkIUCaaM
 Content-Type: application/json
 
 {
     "title": "Título del Post de Prueba",
     "content": "Este es el contenido del post de prueba.",
-    "authorId": 1
+    "authorId": 3
 }
 
 ###
@@ -64,5 +64,5 @@ Content-Type: application/json
 {
     "title": "Título del Post de Prueba",
     "content": "Este es el contenido del post de prueba.",
-    "authorId": 1
+    "authorId": 3
 }

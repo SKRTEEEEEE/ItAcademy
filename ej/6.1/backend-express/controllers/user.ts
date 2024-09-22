@@ -41,8 +41,6 @@ export class UserController {
 
     async register (req: Request, res: Response, next:NextFunction): Promise<void>{
         const { name, email, password } = req.body;
-        console.log("Registro solicitado:", req.body); // Agrega un log aquí
-
         const hashedPassword = await bcrypt.hash(password, 10);
 
         try {
