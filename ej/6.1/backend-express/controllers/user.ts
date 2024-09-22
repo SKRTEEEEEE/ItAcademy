@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
-import { PrismaUserRepository } from "../infraestructure/repositories/prisma-user";
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+
+import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
+import {SetEnvError} from "../../core/domain/errors/main"
+import { PrismaUserRepository } from "../infraestructure/repositories/prisma-user";
 const userRepository = new PrismaUserRepository()
 
 export class UserController {
@@ -23,7 +26,11 @@ export class UserController {
         try {
             const user = await userRepository.readByEmail(email);
             if (user && (await bcrypt.compare(password, user.password))) {
-                res.json(user);
+                // res.json(user);
+                const secret = process.env.JWT_SECRET
+                if(!secret) throw new SetEnvError("JWT_SECRET")
+                const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+                res.json({ token });
             } else {
                 res.status(401).json({ message: 'Invalid credentials' });
             }

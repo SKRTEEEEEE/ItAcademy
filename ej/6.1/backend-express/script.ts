@@ -38,6 +38,8 @@ async function main() {
   // })
   // const usersWithPosts = await readAll()
   // console.dir(usersWithPosts, { depth: null })
+  const deletedUsers = await prisma.user.deleteMany({})
+  console.log(`Eliminados: ${deletedUsers.count} usuarios`)
 }
 
 main()
