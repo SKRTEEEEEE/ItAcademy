@@ -10,7 +10,7 @@ export class PrismaUserRepository extends PrismaClientConfig implements UserRepo
     super()
   }
 
-  async create(userData: {email:string, name?: string}): Promise<User> {
+  async create(userData: {email:string, password:string, name?: string}): Promise<User> {
     try {
       return await this.prisma.user.create({
         data: userData,
