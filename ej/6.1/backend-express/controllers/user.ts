@@ -16,6 +16,16 @@ export class UserController {
     // constructor() {
     //     this.userRepository = new PrismaUserRepository();
     // }
+
+    async create (req: Request, res: Response, next:NextFunction): Promise<void>{
+        const { name, email } = req.body;
+        try {
+            const user = await userRepository.create({ name, email });
+            res.status(201).json(user);
+        } catch (error) {
+            next(error);
+        }
+    }
     async readById (req: Request, res: Response, next:NextFunction): Promise<void>{
         const r = new ReadById(userRepository)
         try {

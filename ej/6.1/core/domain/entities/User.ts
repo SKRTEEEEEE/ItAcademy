@@ -5,7 +5,7 @@ export class User {
       public id: number,
       public email: string,
       public name: string | null,
-      public role: string,
+      public role: string = "USER",
       public banned: boolean = false
     ) {}
   }

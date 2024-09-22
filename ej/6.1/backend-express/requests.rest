@@ -1,0 +1,22 @@
+### Create un nuevo usuario
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Usuario de Prueba",
+    "email": "usuario@prueba.com"
+}
+
+###
+
+### Read todos los usuarios
+GET http://localhost:3000/users
+Accept: application/json
+
+###
+
+### Read un usuario por ID
+GET http://localhost:3000/users/1
+Accept: application/json
+
+###
