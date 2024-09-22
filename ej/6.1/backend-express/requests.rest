@@ -27,3 +27,26 @@ GET http://localhost:3000/users/email/usuario@prueba.com
 Accept: application/json
 
 ###
+
+### Login un usuario
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "usuario@prueba.com",
+    "password": "usuarioprueba1"
+}
+
+###
+
+### Post de un usuario
+
+POST http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Content-Type: application/json
+
+{
+    "title": "Título del Post de Prueba",
+    "content": "Este es el contenido del post de prueba.",
+    "authorId": 1
+}

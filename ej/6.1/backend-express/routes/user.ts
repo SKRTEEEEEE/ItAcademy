@@ -5,6 +5,7 @@ import { UserController } from "../controllers/user";
 const controller = new UserController()
 const ExpressUserRouter = Router()
 
+ExpressUserRouter.post("/login", controller.login)
 ExpressUserRouter.post("/signup", controller.register)
 ExpressUserRouter.get("/users", controller.readAll)
 ExpressUserRouter.get("/users/id/:id", controller.readById)

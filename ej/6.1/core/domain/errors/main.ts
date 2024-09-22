@@ -11,3 +11,4 @@ abstract class ErrorBase extends Error {
 }
 
 export class SetEnvError extends ErrorBase {}
+export class UnauthorizedError extends ErrorBase{}

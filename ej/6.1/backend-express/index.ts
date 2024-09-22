@@ -1,12 +1,12 @@
-import express from "express";
-import { Request, Response, NextFunction } from "express";
-import { ExpressUserRouter } from "./routes/user";
+import express,{ Request, Response, NextFunction } from "express";
+import { setupRoutes } from "./routes/main";
 
 const app = express();
 
 app.use(express.json());
 
-app.use(ExpressUserRouter);
+setupRoutes(app);
+
 
 app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Error) {
