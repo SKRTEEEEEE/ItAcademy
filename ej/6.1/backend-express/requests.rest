@@ -3,9 +3,9 @@ POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-    "name": "Usuario de Prueba id3",
-    "email": "usuario3@prueba.com",
-    "password": "usuarioprueba3"
+    "name": "Usuario de Prueba id4",
+    "email": "usuario4@prueba.com",
+    "password": "usuarioprueba4"
 }
 
 ###
@@ -13,14 +13,14 @@ Content-Type: application/json
 ### Read todos los usuarios ❌
 GET http://localhost:3000/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDIxNDk3LCJleHAiOjE3MjcwMjUwOTd9.9VHGdqjsUC_USqYCWSZnri6qCHWnfYVHxJ3feoukEQY
 
 ###
 
 ### Read un usuario por ID ✅
-GET http://localhost:3000/users/id/1
+GET http://localhost:3000/users/id/3
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MDIyNDM1LCJleHAiOjE3MjcwMjYwMzV9.2NagmZ-MO04k9CpurlqEWaZ7Oj8C1rVtn_ZPw2Pq-fo
 
 ###
 
@@ -29,6 +29,19 @@ GET http://localhost:3000/users/email/usuario@prueba.com
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
 
+### 
+
+### Update un usuario
+PUT http://localhost:3000/users/update/3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MDIzNDEwLCJleHAiOjE3MjcwMjcwMTB9.3B41-Xa5uK-pOsyRMQIpZNI7QXZoCe0cjL3vmFcPX8Y
+Accept: application/json
+
+{
+  "name": "Usuario de prueba 3b"
+}
+
+
 ###
 
 ### Login un usuario
@@ -36,16 +49,16 @@ POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "usuario@prueba.com",
-    "password": "usuarioprueba1"
+    "email": "test3@prueba.com",
+    "password": "usuarioprueba123"
 }
 
 ###
 
-### Post de un usuario ✅
+### Create Post de un usuario ✅
 
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDIwMjEzLCJleHAiOjE3MjcwMjM4MTN9._RfEPHAwTxVldvwYVi2mJXpABHa5Nsaxz_ZPkIUCaaM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDIxNDk3LCJleHAiOjE3MjcwMjUwOTd9.9VHGdqjsUC_USqYCWSZnri6qCHWnfYVHxJ3feoukEQY
 Content-Type: application/json
 
 {
@@ -56,7 +69,7 @@ Content-Type: application/json
 
 ###
 
-### Post de un usuario ❌
+### Create Post de un usuario ❌
 
 POST http://localhost:3000/posts
 Content-Type: application/json
@@ -66,3 +79,4 @@ Content-Type: application/json
     "content": "Este es el contenido del post de prueba.",
     "authorId": 3
 }
+

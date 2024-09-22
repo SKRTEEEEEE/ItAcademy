@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
-import {SetEnvError} from "../../core/domain/errors/main"
+import {SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
 import { PrismaUserRepository } from "../infraestructure/repositories/prisma-user";
 const userRepository = new PrismaUserRepository()
 
@@ -76,6 +76,31 @@ export class UserController {
         const r = new ReadByEmail(userRepository)
         try {
             const user = await r.execute(req.params.email)
+            if (user) {
+                res.json(user)
+            } else {
+                res.status(404).json({ message: 'User not found' })
+            }
+        } catch (error) {
+            next(error)
+        }
+    }
+    async update (req: Request, res: Response, next:NextFunction): Promise<void>{
+        const { name, email, password } = req.body
+        let hashedPassword;
+        if(password) hashedPassword = await bcrypt.hash(password, 10)
+        try {
+            if (!req.user) {
+                res.status(401).json({ message: 'Unauthorized' });
+                throw new UnauthorizedError("user not set in jwt")
+            }
+            if (req.user.id !== parseInt(req.params.id)) {
+                res.status(403).json({ message: 'Forbidden' });
+                throw new UnauthorizedError("user not authorized")
+            }
+            console.log(req.body)
+            console.log(req.params.id)
+            const user = await userRepository.update(parseInt(req.params.id), { name, email, password: hashedPassword })
             if (user) {
                 res.json(user)
             } else {

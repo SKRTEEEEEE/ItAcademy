@@ -3,21 +3,42 @@ import jwt, { VerifyErrors } from 'jsonwebtoken';
 import { SetEnvError } from '../../core/domain/errors/main';
 import { CustomJwtPayload } from '../express';
 
-const secretKey = process.env.JWT_SECRET 
-export const authenticateJWT =  (req: Request, res: Response, next: NextFunction) => {
-    const token = req.headers['authorization']?.split(' ')[1]; // Obtener el token del encabezado
+const secretKey = process.env.JWT_SECRET;
 
-    if (token) {
-        if(!secretKey) throw new SetEnvError("JWT_SECRET")
-            try {
-                const user = jwt.verify(token, secretKey) as CustomJwtPayload; // Usar as para el tipo
-                req.user = user; // Almacenar el usuario en la solicitud
-                next();
-            } catch (err) {
-                return res.sendStatus(403); // Forbidden
-            }
-    } else {
-        res.sendStatus(401); // Unauthorized
+export const authenticateJWT = (req: Request, res: Response, next: NextFunction) => {
+    // Mostrar información de la solicitud para depurar
+    console.log("Authorization Header:", req.headers['authorization']);
+    console.log("Request Body Before JWT Auth:", req.body);
+
+    // Obtener el token del encabezado de autorización
+    const token = req.headers['authorization']?.split(' ')[1];
+
+    if (!token) {
+        console.error("No token provided");
+        return res.status(401).json({ message: 'Unauthorized: No token provided' });
+    }
+
+    if (!secretKey) {
+        throw new SetEnvError("JWT_SECRET not set in environment variables");
+    }
+
+    try {
+        // Verificar el token y extraer el payload
+        const user = jwt.verify(token, secretKey) as CustomJwtPayload;
+        console.log("JWT Verified, user:", user);
+
+        // Almacenar el usuario en la solicitud
+        req.user = user;
+
+        // Verificar el cuerpo de la solicitud después de la autenticación
+        console.log("Request Body After JWT Auth:", req.body);
+
+        // Pasar al siguiente middleware o controlador
+        next();
+    } catch (err) {
+        console.error("Token verification failed:", err);
+        return res.status(403).json({ message: 'Forbidden: Invalid token' });
     }
 };
+
 // export const authorizationAdmin = (req)

@@ -36,7 +36,7 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 - Editar publicaciones por user
 - **Solo admin**
   - Read todos los usuarios
-  - Banear/Reactivas usuarios
+  - Banear/Reactivar usuarios
   - Delete publicaciones
 
 
