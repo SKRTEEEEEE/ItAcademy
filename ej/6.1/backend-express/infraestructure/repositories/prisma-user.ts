@@ -1,11 +1,14 @@
 // backend/src/infrastructure/repositories/PrismaUserRepository.ts
 
-import { Prisma, PrismaClient } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import {UserRepository}from "../../../core/application/repositories/user"
 import {User} from "../../../core/domain/entities/User"
+import { PrismaClientConfig } from '../connectors/prisma-db';
 
-export class PrismaUserRepository implements UserRepository {
-  constructor(private prisma: PrismaClient) {}
+export class PrismaUserRepository extends PrismaClientConfig implements UserRepository {
+  constructor() {
+    super()
+  }
 
   async create(userData: Omit<User, 'id'>): Promise<User> {
     try {
