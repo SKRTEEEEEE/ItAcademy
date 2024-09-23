@@ -2,9 +2,9 @@ import { NextFunction, Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
-import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
-import {FindDbError, InvalidUrlError, SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
-import { PrismaUserRepository } from "../infrastructure/repositories/prisma-user";
+import {ReadAll, ReadByEmail, ReadById} from "../../../core/application/usecases/atomic/user"
+import {FindDbError, InvalidUrlError, SetEnvError, UnauthorizedError} from "../../../core/domain/errors/main"
+import { PrismaUserRepository } from "../../infrastructure/repositories/prisma-user";
 import { User } from "@prisma/client";
 export const userRepository = new PrismaUserRepository()
 

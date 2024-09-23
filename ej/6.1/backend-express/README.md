@@ -76,32 +76,31 @@ project/
 │   │           │   └── UserControllerPort.ts
 │   │           └── out/
 │   │               └── UserPersistencePort.ts
-│   ├── package.json ❓⚠️
-│   └── tsconfig.json ❓⚠️
 ├── backend/
-│   ├── src/
-│   │   ├── infrastructure/
-│   │   │   ├── prisma/ ❓⚠️
-│   │   │   │   └── schema.prisma
-│   │   │   ├── repositories/
-│   │   │   │   ├── prisma-user.ts
-│   │   │   │   └── prisma-post.ts
-│   │   │   └── config/
-│   │   │       └── prisma-db.ts
-│   │   └── interfaces/ ❓⚠️
-│   │       ├── controllers/
-│   │       │   └── ExpressUserController.ts
-│   │       └── routes/
-│   │           └── userRoutes.ts
+│   ├── infrastructure/
+│   │   ├── prisma/ ❓⚠️ //Podría pasar esta parte aquí??
+│   │   │   └── schema.prisma
+│   │   ├── repositories/
+│   │   │   ├── prisma-user.ts
+│   │   │   └── prisma-post.ts
+│   │   └── config/
+│   │       └── prisma-db.ts
+│   └── interfaces/ ❓⚠️
+│       ├── controllers/
+│       │   └── ExpressUserController.ts
+│       └── routes/
+│           └── userRoutes.ts
 │   ├── prisma/
 │   │   └── schema.prisma
 │   ├── package.json
-│   └── tsconfig.json
-└── frontend/
-    ├── src/
-    │   └── ...
-    ├── package.json
-    └── tsconfig.json
+│   ├── tsconfig.json
+│   └── ...
+├── frontend/
+│   ├── src/
+|   │   └── ...
+|   ├── package.json
+|   └── tsconfig.json
+└── tsconfig.json
     
 ```
 

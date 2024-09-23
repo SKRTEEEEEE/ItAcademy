@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { SetEnvError, UnauthorizedError } from '../../core/domain/errors/main';
-import { CustomJwtPayload } from '../express';
+import { SetEnvError, UnauthorizedError } from '../../../core/domain/errors/main';
+import { CustomJwtPayload } from '../../express';
 import { userRepository } from './user';
 
 const secretKey = process.env.JWT_SECRET;
