@@ -101,7 +101,9 @@ project/
     ├── src/
     │   └── ...
     ├── package.json
-    └── tsconfig.json```
+    └── tsconfig.json
+    
+```
 
 </details>
 
