@@ -30,7 +30,7 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 - Update usuario
 ##### Requisitos backend
 - Crear publicaciones
-- Crear like 🖊️
+- Crear like 
 - Read publicaciones por user
 - Delete publicaciones por user 
 - Editar publicaciones por user
@@ -45,25 +45,63 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 ### Requerimientos
 
 
-<details><summary><code><bold>Nivel 3</bold> </code></summary><br/>
+<details><summary><code><bold>Estructura actual</bold> </code></summary><br/>
 
-- _En este caso se utiliza un script de ts, junto a mongoose, para crear y poblar la base de datos_
-##### Proceso elaboración
-- _**No necesario una vez clonado!**_
-1. Crear tipos bdd. Podemos [ver el archivo de tipos, haciendo click aquí](./src/types.d.ts)
-2. Crear esquemas bdd utilizando mongoose. Podemos [ver el archivo de esquemas, haciendo click aquí](./src/schemas.ts)
-3. Crear función para obtener conexión a nuestro entorno. Podemos [ver el archivo con la función de conexión, haciendo click aquí](./src/lib.ts)
-4. Crear función principal encargada de ejecutar la conexión, crear y poblar la base de datos. Podemos ver [el archivo script de creación y población de la bdd, haciendo click aquí!](./src/initDb-script.ts)
-##### Instalación dependencias
-- Para instalar las dependencias, usar el siguiente comando:
-```bash
-npm i
+- _Esta es la idea a seguir actualmente como estructura_
+#### Estructura carpetas actual
+
 ```
-##### Ejecutar script
-- Ejecutar script para crear y poblar las bases de datos
-```
-npx ts-node src/initDb-script.ts
-```
+project/
+├── core/
+│   ├── src/
+│   │   ├── domain/
+│   │   │   ├── entities/
+│   │   │   │   ├── User.ts
+│   │   │   │   └── Post.ts
+│   │   │   └── errors/
+│   │   │       ├── main.ts
+│   │   │       └── <others>.ts
+│   │   └── application/
+│   │       ├── usecases/
+│   │       │   ├── CreateUserUseCase.ts ⚠️🖊️
+│   │       │   └── CreatePostUseCase.ts ⚠️🖊️
+│   │       ├── repositories/
+│   │       │   ├── user.d.ts
+│   │       │   └── post.d.ts
+│   │       ├── services/
+│   │       │   ├── email.d.ts
+│   │       │   └── auth.d.ts
+│   │       └── ports/ ❓🖊️
+│   │           ├── in/
+│   │           │   └── UserControllerPort.ts
+│   │           └── out/
+│   │               └── UserPersistencePort.ts
+│   ├── package.json ❓⚠️
+│   └── tsconfig.json ❓⚠️
+├── backend/
+│   ├── src/
+│   │   ├── infrastructure/
+│   │   │   ├── prisma/ ❓⚠️
+│   │   │   │   └── schema.prisma
+│   │   │   ├── repositories/
+│   │   │   │   ├── prisma-user.ts
+│   │   │   │   └── prisma-post.ts
+│   │   │   └── config/
+│   │   │       └── prisma-db.ts
+│   │   └── interfaces/ ❓⚠️
+│   │       ├── controllers/
+│   │       │   └── ExpressUserController.ts
+│   │       └── routes/
+│   │           └── userRoutes.ts
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── package.json
+│   └── tsconfig.json
+└── frontend/
+    ├── src/
+    │   └── ...
+    ├── package.json
+    └── tsconfig.json```
 
 </details>
 

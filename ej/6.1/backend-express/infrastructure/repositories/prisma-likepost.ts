@@ -14,5 +14,4 @@ export class PrismaLikePostRepository extends PrismaClientConfig implements Like
             }
         });
     }
-
 }
