@@ -29,7 +29,7 @@ export class UserController {
                 // res.json(user);
                 const secret = process.env.JWT_SECRET
                 if(!secret) throw new SetEnvError("JWT_SECRET")
-                const token = jwt.sign({ id: user.id }, secret, { expiresIn: '1h' });
+                const token = jwt.sign({ id: user.id, role: user.role }, secret, { expiresIn: '1h' });
                 res.json({ token });
             } else {
                 res.status(401).json({ message: 'Invalid credentials' });

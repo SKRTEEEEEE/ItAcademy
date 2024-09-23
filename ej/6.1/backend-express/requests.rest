@@ -3,9 +3,9 @@ POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-    "name": "Usuario de Prueba id5",
-    "email": "usuario5@prueba.com",
-    "password": "usuarioprueba5"
+    "name": "Usuario de Prueba",
+    "email": "usuario2@prueba.com",
+    "password": "usuarioprueba2"
 }
 
 ###
@@ -13,14 +13,14 @@ Content-Type: application/json
 ### Read todos los usuarios ❌ 
 GET http://localhost:3000/admins/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDM0MzMyLCJleHAiOjE3MjcwMzc5MzJ9.8zsceBUJh2bB3db_2xFgeiMOLfxb000tAJWY7OzTyQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDM3NTI5LCJleHAiOjE3MjcwNDExMjl9.e4vt0VH5JGvjUvm3xSMkZWZ5Muoc1EYrdY49yVO4-Lg
 
 ###
 
 ### Read un usuario por ID ✅
 GET http://localhost:3000/users/id/3
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDI2NDUzLCJleHAiOjE3MjcwMzAwNTN9.CCBYwUXpwbtgbG4l2mxRXMfydmWWEL0wJtgX4Ou3nm4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDM2OTA0LCJleHAiOjE3MjcwNDA1MDR9.T-Z-MI1Dt_1u5YJpwEvAhpbIPTeVJiM1luCXlU3y_r8
 
 ###
 
@@ -44,14 +44,26 @@ Accept: application/json
 
 ###
 
+### Login un usuario admin ✅
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "firstAdmin@prisma.io",
+    "password": "firstAdmin"
+}
+
+###
+
 ### Login un usuario ✅
 
 POST http://localhost:3000/login
 Content-Type: application/json
 
 {
-    "email": "usuario5@prueba.com",
-    "password": "usuarioprueba5"
+    "email": "usuario2@prueba.com",
+    "password": "usuarioprueba2"
 }
 
 ###
@@ -59,13 +71,13 @@ Content-Type: application/json
 ### Create Post de un usuario ✅
 
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDI1MDA3LCJleHAiOjE3MjcwMjg2MDd9.qOF7z9OL0iA-vWchVyzblpmZifKgHBttiGntvJ5Dx_s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwMzc3NDksImV4cCI6MTcyNzA0MTM0OX0.RlrUm_1925bgRpOROmo5hTQ-HLGbnFT298ICwGVVCQ4
 Content-Type: application/json
 
 {
     "title": "Título del Post de Prueba",
-    "content": "Este es el contenido del post de prueba.",
-    "authorId": 5
+    "content": "Este es el contenido del post de prueba del User2.",
+    "authorId": 2
 }
 
 ###
@@ -109,6 +121,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxN
 
 ### Delete Post de un usuario
 
-DELETE http://localhost:3000/posts/5
+DELETE http://localhost:3000/posts/9
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzI3MDI1OTk5LCJleHAiOjE3MjcwMjk1OTl9.KPhRXyrIImE-k-mgj_ZCACJUujLh2wlq5qc5r3dMiCU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDM3NTI5LCJleHAiOjE3MjcwNDExMjl9.e4vt0VH5JGvjUvm3xSMkZWZ5Muoc1EYrdY49yVO4-Lg

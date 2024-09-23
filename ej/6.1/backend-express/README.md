@@ -32,12 +32,12 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 - Crear publicaciones
 - Crear like 🖊️
 - Read publicaciones por user
-- Delete publicaciones por user
+- Delete publicaciones por user 🔎
 - Editar publicaciones por user
 - **Solo admin**
   - Read todos los usuarios
   - Banear/Reactivar usuarios
-  - Delete publicaciones ⚠️
+  - Delete publicaciones ⚠️🔎
 
 
 ## [Recursos](https://github.com/SKRTEEEEEE/markdowns/)
