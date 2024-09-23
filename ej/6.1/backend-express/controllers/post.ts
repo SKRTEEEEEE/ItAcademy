@@ -1,10 +1,18 @@
 import { NextFunction, Request, Response } from "express";
 import { PrismaPostRepository } from "../infrastructure/repositories/prisma-post";
 import { FindDbError, UnauthorizedError } from "../../core/domain/errors/main";
+import { Post } from "../../core/domain/entities/Post";
+import { UserJWT } from "../express";
 
 const postRepository = new PrismaPostRepository()
 
 export class PostController {
+    constructor() {
+        this.delete = this.delete.bind(this);
+        this.hardDelete = this.hardDelete.bind(this);
+        this.softDelete = this.softDelete.bind(this);
+    }
+
     async create(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const { title, content } = req.body;
@@ -54,18 +62,38 @@ export class PostController {
                 res.status(401).json({message: "Unauthorized"})
                 throw new UnauthorizedError(`user jwt not set`)
             }
-            // Hay que testear esto ⬇️⚠️🧠
-            if( req.user.id === post.authorId || req.user.role === "ADMIN"){
-                const deletedPost = await postRepository.delete(parseInt(id));
-                res.status(200).json(deletedPost);
+            const deleteType = req.query.type;
+            if(deleteType === "hard"){
+                this.hardDelete( parseInt(id),req.user,  res)
+            } else if(deleteType === "soft") {
+                this.softDelete(post, parseInt(id),req.user,  res)
             } else {
-                res.status(403).json({message: "Forbidden"})
-                throw new UnauthorizedError("user not authorized")
+                res.status(400).json({message: "Invalid delete type"})
             }
-
 
         } catch (error) {
             next(error);
         }
     }
+    private hardDelete = async (id: number, user: UserJWT, res: Response): Promise<void> => {
+        if (user.role === "ADMIN") {
+            const deletedPost = await postRepository.delete(id);
+            res.status(200).json(deletedPost);
+        } else {
+            res.status(403).json({ message: "Forbidden" });
+            throw new UnauthorizedError("user not authorized for hardDelete");
+        }
+    };
+    
+    private softDelete = async (post: Post, id: number, user: UserJWT, res: Response): Promise<void> => {
+        console.log("softDelete props: ", { post }, id, { user }, { res });
+    
+        if (user.id === post.authorId || user.role === "ADMIN") {
+            const deletedPost = await postRepository.update(id, { deleted: !post.deleted });
+            res.status(200).json(deletedPost);
+        } else {
+            res.status(403).json({ message: "Forbidden" });
+            throw new UnauthorizedError("user not authorized for softDelete");
+        }
+    };
 }

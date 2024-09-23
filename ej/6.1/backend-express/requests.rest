@@ -71,7 +71,7 @@ Content-Type: application/json
 ### Create Post de un usuario ✅
 
 POST http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwMzc3NDksImV4cCI6MTcyNzA0MTM0OX0.RlrUm_1925bgRpOROmo5hTQ-HLGbnFT298ICwGVVCQ4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwNzg3MTIsImV4cCI6MTcyNzA4MjMxMn0.M60RJETRpTme3wg6akqVBZN1J37W6nRmblVoTQjIJOw
 Content-Type: application/json
 
 {
@@ -119,8 +119,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxN
 
 ###
 
-### Delete Post de un usuario
+### Delete Post de un usuario 
 
-DELETE http://localhost:3000/posts/9
+DELETE http://localhost:3000/posts/10?type=soft
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwNzcyMzQsImV4cCI6MTcyNzA4MDgzNH0.U-XBalGXvu4jKS4WHzFeFLC-TPemKZIEIB4IuI8rfkM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDc5ODIzLCJleHAiOjE3MjcwODM0MjN9.39lqZOEXJcnZ43BkDGc5VzehS-QwChK_5uktS7pWnZw
