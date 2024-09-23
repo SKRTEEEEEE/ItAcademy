@@ -9,9 +9,9 @@ const UserRouter = Router()
 
 NoAuthenticateRouter.post("/login", controller.login)
 NoAuthenticateRouter.post("/signup", controller.register)
-UserRouter.get("/users/id/:id", controller.readById)
-UserRouter.get("/users/email/:email", controller.readByEmail)
-UserRouter.put("/users/update/:id", controller.update)
+UserRouter.get("/users/:params", controller.read)
+// UserRouter.get("/users/email/:email", controller.readByEmail)
+UserRouter.put("/users/:id", controller.update)
 UserRouter.get("/admins/users", controller.readAll)
 UserRouter.put("/admins/banned/:id", controller.updateBanned)
 

@@ -18,21 +18,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6I
 ###
 
 ### Read un usuario por ID ✅
-GET http://localhost:3000/users/id/2
+GET http://localhost:3000/users/2?type=id
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDM2OTA0LCJleHAiOjE3MjcwNDA1MDR9.T-Z-MI1Dt_1u5YJpwEvAhpbIPTeVJiM1luCXlU3y_r8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwODA2MTUsImV4cCI6MTcyNzA4NDIxNX0.ob5TZA8iZxKRzUphQGTWvfbkShTwmtzmODFoI7fRVTQ
 
 ###
 
 ### Read un usuario por ID ✅
-GET http://localhost:3000/users/email/usuario@prueba.com
+GET http://localhost:3000/users/usuario2@prueba.com?type=email
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzI3MDE2NjU5LCJleHAiOjE3MjcwMjAyNTl9.MDFmvFh0PfBBd6OEys6Ai30-Mu3p8VzatkqpzPsP9bA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwODA2MTUsImV4cCI6MTcyNzA4NDIxNX0.ob5TZA8iZxKRzUphQGTWvfbkShTwmtzmODFoI7fRVTQ
 
 ### 
 
 ### Update un usuario ✅
-PUT http://localhost:3000/users/update/3
+PUT http://localhost:3000/users/3
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzI3MDIzNDEwLCJleHAiOjE3MjcwMjcwMTB9.3B41-Xa5uK-pOsyRMQIpZNI7QXZoCe0cjL3vmFcPX8Y
 Accept: application/json

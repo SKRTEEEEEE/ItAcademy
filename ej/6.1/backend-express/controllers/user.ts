@@ -8,6 +8,12 @@ import { PrismaUserRepository } from "../infrastructure/repositories/prisma-user
 export const userRepository = new PrismaUserRepository()
 
 export class UserController {
+    constructor(){
+        this.read = this.read.bind(this);
+        this.readById = this.readById.bind(this)
+        this.readByEmail = this.readByEmail.bind(this)
+    }
+
     // Porque no funciona ❓ 🧠 ⬇️
 
     // private userRepository: UserRepository;
@@ -50,10 +56,23 @@ export class UserController {
             next(error);
         }
     }
-    async readById (req: Request, res: Response, next:NextFunction): Promise<void>{
-        const r = new ReadById(userRepository)
+    async read(req: Request, res: Response, next:NextFunction): Promise<void>{
+        const type = req.query.type as string | undefined;
+        if (type === "id") {
+            const r = new ReadById(userRepository)
+            await this.readById(req, res, next, r)
+        } else if(type === "email"){
+            const r = new ReadByEmail(userRepository)
+            await this.readByEmail(req, res, next, r)
+        } else {
+            res.status(400).json({message: "Invalid read type"})
+        }
+    }
+    private async readById (req: Request, res: Response, next:NextFunction, r: ReadById): Promise<void>{
+        // console.log("readById id:" , req.params.params)
+        
         try {
-            const user = await r.execute(parseInt(req.params.id));
+            const user = await r.execute(parseInt(req.params.params));
             if (user) {
                 res.json(user);
             } else {
@@ -63,24 +82,23 @@ export class UserController {
             next(error);
         }
     }
-    async readAll (req: Request, res: Response, next:NextFunction): Promise<void>{
-        const ra = new ReadAll(userRepository)
+    async readByEmail (req: Request, res: Response, next:NextFunction, r: ReadByEmail): Promise<void>{
         try {
-            const users = await ra.execute()
-            res.status(200).json(users)
-        } catch (error) {
-            next(error)
-        }
-    }
-    async readByEmail (req: Request, res: Response, next:NextFunction): Promise<void>{
-        const r = new ReadByEmail(userRepository)
-        try {
-            const user = await r.execute(req.params.email)
+            const user = await r.execute(req.params.params)
             if (user) {
                 res.json(user)
             } else {
                 res.status(404).json({ message: 'User not found' })
             }
+        } catch (error) {
+            next(error)
+        }
+    }
+    async readAll (req: Request, res: Response, next:NextFunction): Promise<void>{
+        const ra = new ReadAll(userRepository)
+        try {
+            const users = await ra.execute()
+            res.status(200).json(users)
         } catch (error) {
             next(error)
         }
