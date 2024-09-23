@@ -53,29 +53,28 @@ Actual ejercicio 5.1, antiguo ejercicio 6 del curso de [NodeJS](https://nodejs.o
 ```
 project/
 ├── core/
-│   ├── src/
-│   │   ├── domain/
-│   │   │   ├── entities/
-│   │   │   │   ├── User.ts
-│   │   │   │   └── Post.ts
-│   │   │   └── errors/
-│   │   │       ├── main.ts
-│   │   │       └── <others>.ts
-│   │   └── application/
-│   │       ├── usecases/
-│   │       │   ├── CreateUserUseCase.ts ⚠️🖊️
-│   │       │   └── CreatePostUseCase.ts ⚠️🖊️
-│   │       ├── repositories/
-│   │       │   ├── user.d.ts
-│   │       │   └── post.d.ts
-│   │       ├── services/
-│   │       │   ├── email.d.ts
-│   │       │   └── auth.d.ts
-│   │       └── ports/ ❓🖊️
-│   │           ├── in/
-│   │           │   └── UserControllerPort.ts
-│   │           └── out/
-│   │               └── UserPersistencePort.ts
+│   ├── domain/
+│   │   ├── entities/
+│   │   │   ├── User.ts
+│   │   │   └── Post.ts
+│   │   └── errors/
+│   │       ├── main.ts
+│   │       └── <others>.ts
+│   └── application/
+│       ├── usecases/
+│       │   ├── CreateUserUseCase.ts ⚠️🖊️
+│       │   └── CreatePostUseCase.ts ⚠️🖊️
+│       ├── repositories/
+│       │   ├── user.d.ts
+│       │   └── post.d.ts
+│       ├── services/
+│       │   ├── email.d.ts
+│       │   └── auth.d.ts
+│       └── ports/ ❓🖊️
+│           ├── in/
+│           │   └── UserControllerPort.ts
+│           └── out/
+│               └── UserPersistencePort.ts
 ├── backend/
 │   ├── infrastructure/
 │   │   ├── prisma/ ❓⚠️ //Podría pasar esta parte aquí??
@@ -85,7 +84,7 @@ project/
 │   │   │   └── prisma-post.ts
 │   │   └── config/
 │   │       └── prisma-db.ts
-│   └── interfaces/ ❓⚠️
+│   └── interfaces/ 
 │       ├── controllers/
 │       │   └── ExpressUserController.ts
 │       └── routes/
