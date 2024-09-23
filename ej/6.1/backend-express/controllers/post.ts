@@ -86,7 +86,6 @@ export class PostController {
     };
     
     private softDelete = async (post: Post, id: number, user: UserJWT, res: Response): Promise<void> => {
-        console.log("softDelete props: ", { post }, id, { user }, { res });
     
         if (user.id === post.authorId || user.role === "ADMIN") {
             const deletedPost = await postRepository.update(id, { deleted: !post.deleted });

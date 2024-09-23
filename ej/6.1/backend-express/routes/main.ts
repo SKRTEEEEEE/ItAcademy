@@ -3,6 +3,7 @@ import express,{ Application, NextFunction, Request, Response } from "express";
 import { NoAuthenticateRouter, UserRouter } from "./user";
 import { PostRouter } from "./post";
 import { authenticateJWT, authorizeAdmin } from "../controllers/auth";
+import { LikePostRouter } from "./likepost";
 
 export const setupRoutes = (app: Application) => {
   app.use(express.json());
@@ -19,6 +20,7 @@ export const setupRoutes = (app: Application) => {
   app.use("/admins", authorizeAdmin)
   app.use(UserRouter);
   app.use(PostRouter);
+  app.use(LikePostRouter)
   app.use((err: unknown, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof Error) {
       console.error(err.stack);
