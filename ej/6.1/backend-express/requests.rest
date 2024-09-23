@@ -13,12 +13,12 @@ Content-Type: application/json
 ### Read todos los usuarios ❌ 
 GET http://localhost:3000/admins/users
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDM3NTI5LCJleHAiOjE3MjcwNDExMjl9.e4vt0VH5JGvjUvm3xSMkZWZ5Muoc1EYrdY49yVO4-Lg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDc3MDg4LCJleHAiOjE3MjcwODA2ODh9.Q5tWXo2KwPmLt6IMgvfVn5TsjIXSjHe7dQ56JMK1rOM
 
 ###
 
 ### Read un usuario por ID ✅
-GET http://localhost:3000/users/id/3
+GET http://localhost:3000/users/id/2
 Accept: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNzI3MDM2OTA0LCJleHAiOjE3MjcwNDA1MDR9.T-Z-MI1Dt_1u5YJpwEvAhpbIPTeVJiM1luCXlU3y_r8
 
@@ -123,4 +123,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxN
 
 DELETE http://localhost:3000/posts/9
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzI3MDM3NTI5LCJleHAiOjE3MjcwNDExMjl9.e4vt0VH5JGvjUvm3xSMkZWZ5Muoc1EYrdY49yVO4-Lg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6IlVTRVIiLCJpYXQiOjE3MjcwNzcyMzQsImV4cCI6MTcyNzA4MDgzNH0.U-XBalGXvu4jKS4WHzFeFLC-TPemKZIEIB4IuI8rfkM

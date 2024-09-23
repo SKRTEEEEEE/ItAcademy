@@ -55,7 +55,7 @@ export class PostController {
                 throw new UnauthorizedError(`user jwt not set`)
             }
             // Hay que testear esto ⬇️⚠️🧠
-            if( req.user.id === post.authorId && req.user.role === "ADMIN"){
+            if( req.user.id === post.authorId || req.user.role === "ADMIN"){
                 const deletedPost = await postRepository.delete(parseInt(id));
                 res.status(200).json(deletedPost);
             } else {
