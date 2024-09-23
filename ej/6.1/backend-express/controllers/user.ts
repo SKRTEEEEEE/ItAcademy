@@ -3,15 +3,15 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 
 import {ReadAll, ReadByEmail, ReadById} from "../../core/application/usecases/atomic/user"
-import {FindDbError, SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
+import {FindDbError, InvalidUrlError, SetEnvError, UnauthorizedError} from "../../core/domain/errors/main"
 import { PrismaUserRepository } from "../infrastructure/repositories/prisma-user";
+import { User } from "@prisma/client";
 export const userRepository = new PrismaUserRepository()
 
 export class UserController {
     constructor(){
         this.read = this.read.bind(this);
-        this.readById = this.readById.bind(this)
-        this.readByEmail = this.readByEmail.bind(this)
+        this.readerBy = this.readerBy.bind(this)
     }
 
     // Porque no funciona ❓ 🧠 ⬇️
@@ -57,41 +57,41 @@ export class UserController {
         }
     }
     async read(req: Request, res: Response, next:NextFunction): Promise<void>{
-        const type = req.query.type as string | undefined;
-        if (type === "id") {
-            const r = new ReadById(userRepository)
-            await this.readById(req, res, next, r)
-        } else if(type === "email"){
-            const r = new ReadByEmail(userRepository)
-            await this.readByEmail(req, res, next, r)
-        } else {
-            res.status(400).json({message: "Invalid read type"})
-        }
-    }
-    private async readById (req: Request, res: Response, next:NextFunction, r: ReadById): Promise<void>{
-        // console.log("readById id:" , req.params.params)
-        
+        const type = req.params.type
+        console.log("type in read:", type)
+        const searchParam = req.query.q as string | undefined
+        console.log("searchParam in read:", searchParam)
         try {
-            const user = await r.execute(parseInt(req.params.params));
+            if(!searchParam) {
+                res.status(400).json({message: "Missing search parameter"})
+                throw new InvalidUrlError("Missing search parameter in read")
+            }
+            let user: User | null = null;
+            if (type === "id") {
+                const r = new ReadById(userRepository)
+                user = await this.readerBy(parseInt(searchParam), r)
+            } else if(type === "email"){
+                const r = new ReadByEmail(userRepository)
+                user = await this.readerBy(searchParam, r)
+            } else {
+                res.status(400).json({message: "Invalid read type"})
+            }
             if (user) {
                 res.json(user);
             } else {
                 res.status(404).json({ message: 'User not found' });
             }
         } catch (error) {
-            next(error);
+            next(error)
         }
     }
-    async readByEmail (req: Request, res: Response, next:NextFunction, r: ReadByEmail): Promise<void>{
-        try {
-            const user = await r.execute(req.params.params)
-            if (user) {
-                res.json(user)
-            } else {
-                res.status(404).json({ message: 'User not found' })
-            }
-        } catch (error) {
-            next(error)
+    private readerBy(searchParam: string | number, r: ReadByEmail | ReadById): Promise<User | null> {
+        if (typeof searchParam === "string") {
+            const reader = r as ReadByEmail; // En este caso, r será de tipo ReadByEmail
+            return reader.execute(searchParam);
+        } else {
+            const reader = r as ReadById; // En este caso, r será de tipo ReadById
+            return reader.execute(searchParam);
         }
     }
     async readAll (req: Request, res: Response, next:NextFunction): Promise<void>{
