@@ -4,10 +4,10 @@ import bcrypt from 'bcryptjs';
 import dotenv from "dotenv"
 
 
-import {ReadAll, ReadByEmail, ReadById} from "../../../core/application/usecases/atomic/user"
-import {FindDbError, InvalidUrlError, SetEnvError, UnauthorizedError} from "../../../core/domain/errors/main"
+import {ReadAll, ReadByEmail, ReadById} from "../../../application/usecases/atomic/user"
+import {FindDbError, InvalidUrlError, SetEnvError, UnauthorizedError} from "../../../domain/errors/main"
 import { PrismaUserRepository } from "../../../infrastructure/repositories/prisma-user";
-import { User } from "../../../core/domain/entities/User";
+import { User } from "../../../domain/entities/user";
 export const userRepository = new PrismaUserRepository()
 
 dotenv.config()
@@ -61,9 +61,7 @@ export class UserController {
     }
     async read(req: Request, res: Response, next:NextFunction): Promise<void>{
         const type = req.params.type
-        console.log("type in read:", type)
         const searchParam = req.query.q as string | undefined
-        console.log("searchParam in read:", searchParam)
         try {
             if(!searchParam) {
                 res.status(400).json({message: "Missing search parameter"})

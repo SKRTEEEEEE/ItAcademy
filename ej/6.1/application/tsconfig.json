@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "baseUrl": ".",
+      // "baseUrl": ".",
       "module": "CommonJS",
       "target": "ES2020",
       // "rootDir": "../", // ❓ Establece la carpeta raíz, sino la raíz es donde esta tsconfig.json
@@ -11,8 +11,9 @@
       "esModuleInterop": true, // ✅ Interoperabilidad entre CommonJS y ES6
       "skipLibCheck": true, // ❓ Omitir verificación de tipos en .d.ts
       "strict": true, 
-      "forceConsistentCasingInFileNames": true // ✅ Forzar mayúsculas y minúsculas en nombres de archivo
+      "forceConsistentCasingInFileNames": false // ✅ Forzar mayúsculas y minúsculas en nombres de archivo
     },
-    "include": ["./domain", "./application"]
+    "include": ["./usecases", "./repositories", "./test", "../domain"],
+    "exclude": ["node_modules"]
   }
   
