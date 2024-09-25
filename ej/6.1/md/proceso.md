@@ -174,3 +174,14 @@ project/
 │   └── ... (sin cambios)
 └── tsconfig.json ❌⚠️
 ```
+
+
+
+## ToDo
+- [ ] Traspasar info a repo original
+- [ ] Mirar `tsconfig.json`
+    - [ ] Mirar @
+    - [ ] Question importación tipos pero no dependencias
+- [x] ❓Hacer test? ❓
+- [ ] Hacer inyección de dependencias
+- [ ] Tratar correctamente los casos de uso / repository: _(post.canceled)_
