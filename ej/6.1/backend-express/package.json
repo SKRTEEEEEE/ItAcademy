@@ -5,12 +5,11 @@
   "main": "index.js",
   "scripts": {
     "prisma:generate": "cd ../infrastructure && npx prisma generate",
-    "prisma:generate2": "cd ../infrastructure && npx prisma generate --schema=./prisma/schema.prisma",
     "prisma:migrate": "cd ../infrastructure && npx prisma migrate dev --schema=./prisma/schema.prisma",
     "prisma:studio": "cd ../infrastructure && npx prisma studio --schema=./prisma/schema.prisma",
-    "test:application": "cd ../application && npm install &&npm run test",
     "preinstall": "cd ../infrastructure && npm install",
     "postinstall": "npm run prisma:generate",
+    
     "build": "tsc",
     "start": "node index.js",
     "dev": "ts-node index.ts"

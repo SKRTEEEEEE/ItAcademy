@@ -1,0 +1,15 @@
+[submodule "backend-express"]
+	path = ./ej/6.1/backend-express
+	url = https://github.com/Study-JavaScript/backend-express.git
+[submodule "domain"]
+	path = ej/6.1/domain
+	url = https://github.com/Study-JavaScript/domain.git
+[submodule "infrastructure"]
+	path = ej/6.1/infrastructure
+	url = https://github.com/Study-JavaScript/infrastructure.git
+[submodule "application"]
+	path = ej/6.1/application
+	url = https://github.com/Study-JavaScript/application.git
+[submodule "md"]
+	path = ej/6.1/md
+	url = https://github.com/Study-JavaScript/md.git
