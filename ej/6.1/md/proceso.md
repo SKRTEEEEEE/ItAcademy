@@ -370,3 +370,13 @@ Explorar documentación de API usando JSDocs y Swagger.
 - Documentar endpoints de la API, se recomienda hacer en los usecases de la aplicación y definir el orden de los tags en el main de las routes.
 - Para ello puedes ver los diferentes ejemplos utilizados hasta las funciones de users.
 
+## 6. Explorar distintas configuraciones para despliegue y compilación
+### Objetivo principal
+Conseguir una estructura de tsconfig.json, y package.json, la cual funcione en producción.
+### Detalles
+#### Compilación
+- Compilar el proyecto de typescript a javascript.
+    - Crear unos package.json y tsconfig.json óptimos para producción y compilación.
+    - Tener en cuenta las importaciones y la instalación de dependencias.
+    - [ ] **Falta terminar:** Configuración db SQLite en Prisma para producción. 
+

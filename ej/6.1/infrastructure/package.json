@@ -1,11 +1,9 @@
 {
   "name": "@hexa-ts/infrastructure",
   "version": "1.0.0",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "dependencies": {
-  "@prisma/client": "^5.19.1"
+    "@prisma/client": "^5.19.1"
   },
   "devDependencies": {
     "prisma": "^5.19.1"
